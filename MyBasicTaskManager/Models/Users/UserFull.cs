@@ -7,5 +7,6 @@ namespace MyBasicTaskManager.Models
 {
     public class UserFull
     {
+
     }
 }

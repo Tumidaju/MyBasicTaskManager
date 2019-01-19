@@ -244,3 +244,9 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\M
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.CopyComplete
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.pdb
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\AutoMapper.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\System.ValueTuple.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\AutoMapper.pdb
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\AutoMapper.xml
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\System.ValueTuple.xml
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.Migrations.DBObjects.resources

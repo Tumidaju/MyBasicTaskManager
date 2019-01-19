@@ -8,9 +8,11 @@ namespace MyBasicTaskManager.Services
 {
     public class TasksService
     {
+        //private readonly ApplicationDbContext _db = new ApplicationDbContext();
         public List<TaskFull> GetAll()
         {
             var model = new List<TaskFull>();
+            ApplicationDbContext _db = new ApplicationDbContext();
             return model;
         }
         public TaskFull Get(int Id)
