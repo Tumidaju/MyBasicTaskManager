@@ -120,6 +120,12 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\MyBasicTask
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.CopyComplete
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.pdb
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.IO.Compression.dll
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\VBCSCompiler.exe
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\ApplicationInsights.config
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\MyBasicTaskManager.dll.config
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\MyBasicTaskManager.dll
@@ -131,13 +137,9 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\csi.exe.config
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\csi.rsp
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -147,7 +149,6 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.IO.Compression.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -170,7 +171,6 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\vbc.exe
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\vbc.exe.config
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\vbc.rsp
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\VBCSCompiler.exe
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\Antlr3.Runtime.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\EntityFramework.dll
@@ -238,9 +238,9 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microso
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microsoft.AI.Web.xml
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csprojAssemblyReference.cache
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.Migrations.InitialCreate.resources
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.GenerateResource.cache
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.CoreCompileInputs.cache
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.CopyComplete
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.pdb
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.Migrations.InitialCreate.resources
-C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.GenerateResource.cache
