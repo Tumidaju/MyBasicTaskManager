@@ -242,3 +242,5 @@ C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\M
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.CopyComplete
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.dll
 C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.pdb
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.Migrations.InitialCreate.resources
+C:\Users\Tumidaju\source\repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csproj.GenerateResource.cache
