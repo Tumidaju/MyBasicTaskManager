@@ -42,3 +42,9 @@
 .overflow-hidden {
     overflow: hidden;
 }
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid #fff !important;
+}

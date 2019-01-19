@@ -246,6 +246,7 @@
     <Compile Include="Models\Tasks\TaskFormViewModel.cs" />
     <Compile Include="Models\Tasks\TasksViewModel.cs" />
     <Compile Include="Models\Users\UserFormViewModel.cs" />
+    <Compile Include="Models\Users\UserSimpleViewModel.cs" />
     <Compile Include="Models\Users\UserSimple.cs" />
     <Compile Include="Models\Users\UsersViewModel.cs" />
     <Compile Include="Models\Users\UserFull.cs" />
@@ -372,6 +373,8 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Tasks\TaskForm.cshtml" />
     <Content Include="Views\Users\UserForm.cshtml" />
+    <Content Include="Views\Tasks\_TaskDataGridPartialView.cshtml" />
+    <Content Include="Views\Tasks\_TaskKanbanPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

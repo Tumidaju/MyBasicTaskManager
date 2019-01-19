@@ -6,6 +6,9 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datagrid")
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -22,7 +25,14 @@
         </nav>
     </header>
     <main>
-        <div class="container-fluid body-content">
+        <div class="container-fluid body-content" style="padding:20px 100px">
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        @ViewBag.Title
+                    </h1>
+                </div>
+            </div>
             @RenderBody()
         </div>
     </main>
@@ -31,12 +41,10 @@
             <span class="text-muted">Michał Pacanowski <i class="fa fa-copyright"></i> 2019</span>
         </div>
     </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
         $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
 </body>

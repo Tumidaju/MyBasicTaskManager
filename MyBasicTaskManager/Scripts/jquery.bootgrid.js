@@ -1240,7 +1240,7 @@
             infos: "infos", // must be a unique class name or constellation of class names within the header and footer,
             left: "text-left",
             pagination: "pagination", // must be a unique class name or constellation of class names within the header and footer
-            paginationButton: "button", // must be a unique class name or constellation of class names within the pagination
+            paginationButton: "page-link", // must be a unique class name or constellation of class names within the pagination
 
             /**
              * CSS class to select the parent div which activates responsive mode.
@@ -1354,8 +1354,8 @@
          * @for defaults
          **/
         templates: {
-            actionButton: "<button class=\"btn btn-default\" type=\"button\" title=\"{{ctx.text}}\">{{ctx.content}}</button>",
-            actionDropDown: "<div class=\"{{css.dropDownMenu}}\"><button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\"><span class=\"{{css.dropDownMenuText}}\">{{ctx.content}}</span> <span class=\"caret\"></span></button><ul class=\"{{css.dropDownMenuItems}}\" role=\"menu\"></ul></div>",
+            actionButton: "<button class=\"btn btn-light\" type=\"button\" title=\"{{ctx.text}}\">{{ctx.content}}</button>",
+            actionDropDown: "<div class=\"{{css.dropDownMenu}}\"><button class=\"btn btn-light dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\"><span class=\"{{css.dropDownMenuText}}\">{{ctx.content}}</span> <span class=\"caret\"></span></button><ul class=\"{{css.dropDownMenuItems}}\" role=\"menu\"></ul></div>",
             actionDropDownItem: "<li><a data-action=\"{{ctx.action}}\" class=\"{{css.dropDownItem}} {{css.dropDownItemButton}}\">{{ctx.text}}</a></li>",
             actionDropDownCheckboxItem: "<li><label class=\"{{css.dropDownItem}}\"><input name=\"{{ctx.name}}\" type=\"checkbox\" value=\"1\" class=\"{{css.dropDownItemCheckbox}}\" {{ctx.checked}} /> {{ctx.label}}</label></li>",
             actions: "<div class=\"{{css.actions}}\"></div>",
@@ -1369,10 +1369,10 @@
             loading: "<tr><td colspan=\"{{ctx.columns}}\" class=\"loading\">{{lbl.loading}}</td></tr>",
             noResults: "<tr><td colspan=\"{{ctx.columns}}\" class=\"no-results\">{{lbl.noResults}}</td></tr>",
             pagination: "<ul class=\"{{css.pagination}}\"></ul>",
-            paginationItem: "<li class=\"{{ctx.css}}\"><a data-page=\"{{ctx.page}}\" class=\"{{css.paginationButton}}\">{{ctx.text}}</a></li>",
+            paginationItem: "<li class=\"{{ctx.css}} page-item\"><a data-page=\"{{ctx.page}}\" class=\"{{css.paginationButton}}\">{{ctx.text}}</a></li>",
             rawHeaderCell: "<th class=\"{{ctx.css}}\">{{ctx.content}}</th>", // Used for the multi select box
             row: "<tr{{ctx.attr}}>{{ctx.cells}}</tr>",
-            search: "<div class=\"{{css.search}}\"><div class=\"input-group\"><span class=\"{{css.icon}} input-group-addon {{css.iconSearch}}\"></span> <input type=\"text\" class=\"{{css.searchField}}\" placeholder=\"{{lbl.search}}\" /></div></div>",
+            search: "<div class=\"{{css.search}}\"><div class=\"input-group\"><div class=\"input-group-prepend\"><span class=\"{{css.icon}} input-group-text {{css.iconSearch}}\" style=\"padding-top: 10px;\"></span></div> <input type=\"text\" class=\"{{css.searchField}}\" placeholder=\"{{lbl.search}}\" /></div></div>",
             select: "<input name=\"select\" type=\"{{ctx.type}}\" class=\"{{css.selectBox}}\" value=\"{{ctx.value}}\" {{ctx.checked}} />"
         }
     };

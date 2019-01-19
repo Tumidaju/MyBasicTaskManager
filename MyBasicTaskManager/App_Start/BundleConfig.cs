@@ -22,8 +22,13 @@ namespace MyBasicTaskManager
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.bundle.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datagrid").Include(
+                      "~/Scripts/jquery.bootgrid.js",
+                      "~/Scripts/jquery.bootgrid.fa.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                       "~/Content/jquery.bootgrid.min.css",
                       "~/Content/site.css"
                       ).Include("~/Content/font-awesome.css", new CssRewriteUrlTransform()));
         }

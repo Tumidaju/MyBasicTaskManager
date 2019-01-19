@@ -1,0 +1,30 @@
+﻿
+<table id="grid-data" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="Id" data-type="numeric">ID</th>
+            <th data-column-id="Category">Category</th>
+            <th data-column-id="Name">Name</th>
+            @*<th data-column-id="Description">Description</th>
+            <th data-column-id="Rank">Priority</th>
+            <th data-column-id="Status">Status</th>
+            <th data-column-id="CreationDate">Creation date</th>
+            <th data-column-id="ComletedDate">Date of completion</th>
+            <th data-column-id="DeadlineDate">Deadline</th>
+            <th data-column-id="progres" data-formatter="progres" data-sortable="false">Progres</th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Main</td>
+            <td>Test1</td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $("#grid-data").bootgrid();
+    });
+</script>
