@@ -20,3 +20,5 @@ ipch/
 *.vspx
 *.sap
 *.lock
+*.mdf
+*.ldf
