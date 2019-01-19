@@ -7,26 +7,26 @@ using System.Web;
 
 namespace MyBasicTaskManager.Services
 {
-    public class UsersService
+    public class StaticDataService
     {
         private readonly DatabaseModel _db = new DatabaseModel();
-        public List<UserFull> GetAll()
+        public List<Rank> GetRanks()
         {
-            var model = new List<UserFull>();
+            var model = new List<Rank>();
+            
             return model;
         }
-        public UserFull Get(int Id)
+        public List<Status> GetStatuses()
         {
-            var model = new UserFull();
-            return model;
-        }
-        public bool Save(bool IsExisting,UserFull Task)
-        {
-            return true;
-        }
-        public void Delete(int Id)
-        {
+            var model = new List<Status>();
 
+            return model;
+        }
+        public List<Category> GetCategories()
+        {
+            var model = new List<Category>();
+
+            return model;
         }
     }
 }

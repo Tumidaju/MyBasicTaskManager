@@ -1,4 +1,5 @@
 ﻿using MyBasicTaskManager.Models;
+using MyBasicTaskManager.Models.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,11 @@ namespace MyBasicTaskManager.Services
 {
     public class TasksService
     {
-        //private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly DatabaseModel _db = new DatabaseModel();
         public List<TaskFull> GetAll()
         {
             var model = new List<TaskFull>();
-            ApplicationDbContext _db = new ApplicationDbContext();
+            
             return model;
         }
         public TaskFull Get(int Id)
