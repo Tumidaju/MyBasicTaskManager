@@ -13,7 +13,7 @@ namespace MyBasicTaskManager.Models
         public string CardColor { get; set; }
         public string FontColor { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime DeadlineDate { get; set; }
+        public DateTime? DeadlineDate { get; set; }
         public int Progres { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace MyBasicTaskManager.Controllers
 {
@@ -13,7 +14,7 @@ namespace MyBasicTaskManager.Controllers
     {
         private readonly TasksService _tasksService = new TasksService();
         private readonly StaticDataService _staticDataService = new StaticDataService();
-
+        private readonly UsersService _usersService = new UsersService();
         public ActionResult Index()
         {
             ViewBag.Title = "My Tasks";
@@ -30,7 +31,7 @@ namespace MyBasicTaskManager.Controllers
             };
             if (IsExisting)
             {
-                var model = _tasksService.Get(Id);
+                var model = _tasksService.Get(Id, _usersService.GetCurrentUserId());
                 ViewBag.Title = "Edit task";
                 Viewmodel.IsExisting = true;
             }
@@ -47,7 +48,7 @@ namespace MyBasicTaskManager.Controllers
             //taskFormViewModel.Task.TryUpdateModel();
             if (ModelState.IsValid)
             {
-                _tasksService.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task);
+                _tasksService.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task, _usersService.GetCurrentUserId());
                 return RedirectToAction("Index");
             }
             else

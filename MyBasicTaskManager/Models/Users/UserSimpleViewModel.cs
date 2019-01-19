@@ -6,10 +6,8 @@ using System.Web;
 
 namespace MyBasicTaskManager.Models
 {
-    public class UserSimple
+    public class UserSimpleViewModel
     {
-        [Required]
-        public string Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

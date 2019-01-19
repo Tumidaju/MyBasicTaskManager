@@ -251,6 +251,7 @@
     <Compile Include="Models\Users\UserFull.cs" />
     <Compile Include="Models\Tasks\TaskFull.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\StaticDataService.cs" />
     <Compile Include="Services\TasksService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
     <Compile Include="Services\UsersService.cs" />

@@ -15,6 +15,11 @@ namespace MyBasicTaskManager.Services
             var model = new List<UserFull>();
             return model;
         }
+        public string GetCurrentUserId()
+        {
+            var model = _db.AspNetUsers.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
+            return model;
+        }
         public UserFull Get(int Id)
         {
             var model = new UserFull();
