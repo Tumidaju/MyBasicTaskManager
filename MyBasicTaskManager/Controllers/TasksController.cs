@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using AutoMapper;
 
 namespace MyBasicTaskManager.Controllers
 {
@@ -18,7 +19,14 @@ namespace MyBasicTaskManager.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "My Tasks";
-            var model = new TasksViewModel();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<TaskFull, TaskViewModel>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var model = new TasksViewModel()
+            {
+                AllTasks = mapper.Map<List<TaskFull>, List<TaskViewModel>>(_tasksService.GetAll(_usersService.GetCurrentUserId())),
+            };
             return View(model);
         }
         public ActionResult TaskForm(bool IsExisting,int Id=0)

@@ -23,7 +23,7 @@ namespace MyBasicTaskManager
                       "~/Scripts/bootstrap.bundle.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datagrid").Include(
-                      "~/Scripts/jquery.bootgrid.js",
+                      "~/Scripts/jquery.bootgrid.custom.js",
                       "~/Scripts/jquery.bootgrid.fa.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
