@@ -3,6 +3,8 @@
 {
     @Html.AntiForgeryToken();
     @Html.ValidationSummary(true);
+    @Html.HiddenFor(model => model.Task.Id)
+    @Html.HiddenFor(model => model.IsExisting)
     <div class="row">
         <div class="col-4">
             <div class="form-gorup">
@@ -14,8 +16,8 @@
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.Rank, new { @class = "", @for = "Rank" })
-                    @Html.DropDownListFor(model => model.Task.Rank, Model.RankList, new { @class = "form-control", @placeholder = "", @id = "Rank" })
-                    @Html.ValidationMessageFor(model => model.Task.Rank)
+                @Html.DropDownListFor(model => model.Task.Rank, Model.RankList, new { @class = "form-control", @placeholder = "", @id = "Rank" })
+                @Html.ValidationMessageFor(model => model.Task.Rank)
             </div>
         </div>
         <div class="col-4">

@@ -21,7 +21,6 @@ namespace MyBasicTaskManager.Models
         [Display(Name = "Font Color")]
         [Required(ErrorMessage = "Font Color is required")]
         public string FontColor { get; set; }
-        public DateTime CreationDate { get; set; }
         [Display(Name = "Deadline")]
         public DateTime? DeadlineDate { get; set; }
         [Display(Name = "Progres")]
@@ -33,6 +32,5 @@ namespace MyBasicTaskManager.Models
         public int Status { get; set; }
         [Display(Name = "Priority")]
         public int Rank { get; set; }
-        public string User { get; set; }
     }
 }

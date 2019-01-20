@@ -39,7 +39,8 @@ namespace MyBasicTaskManager.Controllers
             {
                 RankList = _staticDataService.GetRanksDropdown(),
                 CategoryList = _staticDataService.GetCategoriesDropdown(),
-                StatusList = _staticDataService.GetStatusesDropdown()
+                StatusList = _staticDataService.GetStatusesDropdown(),
+                Task=new TaskFullViewModel() {Id=0, Progres = 0 }
             };
             if (IsExisting)
             {
