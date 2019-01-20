@@ -40,7 +40,7 @@ namespace MyBasicTaskManager.Controllers
                 RankList = _staticDataService.GetRanksDropdown(),
                 CategoryList = _staticDataService.GetCategoriesDropdown(),
                 StatusList = _staticDataService.GetStatusesDropdown(),
-                Task=new TaskFullViewModel() {Id=0, Progres = 0 }
+                Task=new TaskFullViewModel() { Id=0, Progres = 0 }
             };
             if (IsExisting)
             {
@@ -74,7 +74,7 @@ namespace MyBasicTaskManager.Controllers
         }
         public ActionResult DeleteTask(int Id)
         {
-             _tasksService.Delete(Id);
+             _tasksService.Delete(Id, _usersService.GetCurrentUserId());
             return RedirectToAction("Index");
         }
     }

@@ -21,6 +21,8 @@ namespace MyBasicTaskManager.Services
                 CardColor = x.CARD_COLOR,
                 FontColor = x.FONT_COLOR,
                 CreationDate = x.CREATION_DATE,
+                EditDate = x.LAST_EDIT_DATE,
+                CompletionDate = x.COMPLETION_DATE,
                 DeadlineDate = x.DEADLINE_DATE,
                 Progres = x.PROGRES,
                 Category = new Category()
@@ -55,6 +57,8 @@ namespace MyBasicTaskManager.Services
                 FontColor = x.FONT_COLOR,
                 CreationDate = x.CREATION_DATE,
                 DeadlineDate = x.DEADLINE_DATE,
+                EditDate = x.LAST_EDIT_DATE,
+                CompletionDate = x.COMPLETION_DATE,
                 Progres = x.PROGRES,
                 Category = new Category()
                 {
@@ -83,13 +87,18 @@ namespace MyBasicTaskManager.Services
             {
                 if(IsExisting)
                 {
-                    var dataModel = _db.TASK.Where(x => x.ID == Task.Id).First();
+                    var dataModel = _db.TASK.Where(x => x.ID == Task.Id && x.USER_ID== UserId).First();
                     dataModel.ID = Task.Id;
                     dataModel.NAME = Task.Name;
                     dataModel.DESCRIPTION = Task.Description;
                     dataModel.CARD_COLOR = Task.CardColor;
                     dataModel.FONT_COLOR = Task.FontColor;
                     dataModel.DEADLINE_DATE = Task.DeadlineDate;
+                    dataModel.LAST_EDIT_DATE = DateTime.Now;
+                    if (Task.Status == 4)
+                        dataModel.COMPLETION_DATE = DateTime.Now;
+                    else
+                        dataModel.COMPLETION_DATE = null;
                     dataModel.PROGRES = Task.Progres;
                     dataModel.CATEGORY_ID = Task.Category;
                     dataModel.RANK_ID = Task.Rank;
@@ -111,17 +120,19 @@ namespace MyBasicTaskManager.Services
                         STATUS_ID = Task.Status,
                         USER_ID=UserId
                     };
+                    if (Task.Status == 4)
+                        dataModel.COMPLETION_DATE = DateTime.Now;
                     _db.TASK.Add(dataModel);
                 }
                 _db.SaveChanges();
             }
             
         }
-        public void Delete(int Id)
+        public void Delete(int Id, string UserId)
         {
             using (_db)
             {
-                var dataModel = _db.TASK.Where(x => x.ID == Id).First();
+                var dataModel = _db.TASK.Where(x => x.ID == Id && x.USER_ID == UserId).First();
                 _db.TASK.Remove(dataModel);
                 _db.SaveChanges();
             }

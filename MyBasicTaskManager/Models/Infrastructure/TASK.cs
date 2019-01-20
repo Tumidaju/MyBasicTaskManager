@@ -31,6 +31,12 @@ namespace MyBasicTaskManager.Models.Infrastructure
         public DateTime CREATION_DATE { get; set; }
 
         [Column(TypeName = "datetime2")]
+        public DateTime? LAST_EDIT_DATE { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? COMPLETION_DATE { get; set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime? DEADLINE_DATE { get; set; }
 
         public int PROGRES { get; set; }
