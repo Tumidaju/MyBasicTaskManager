@@ -21,6 +21,6 @@ namespace MyBasicTaskManager.Models
         public Category Category { get; set; }
         public Status Status { get; set; }
         public Rank Rank { get; set; }
-        public UserSimple User { get; set; }
+        public UserFull User { get; set; }
     }
 }

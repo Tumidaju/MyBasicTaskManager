@@ -12,7 +12,13 @@ namespace MyBasicTaskManager.Services
         private readonly DatabaseModel _db = new DatabaseModel();
         public List<UserFull> GetAll()
         {
-            var model = new List<UserFull>();
+            var model = _db.AspNetUsers.Select(x => new UserFull()
+            {
+                Id = x.Id,
+                Email = x.Email,
+                Username = x.UserName,
+                Roles = x.AspNetRoles.Select(r => new Role() { Id = r.Id }).ToList(),
+            }).ToList();
             return model;
         }
         public string GetCurrentUserId()
@@ -20,18 +26,44 @@ namespace MyBasicTaskManager.Services
             var model = _db.AspNetUsers.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
             return model;
         }
-        public UserFull Get(int Id)
+        public UserFull Get(string UserId)
         {
-            var model = new UserFull();
+            var model = _db.AspNetUsers.Where(x => x.Id == UserId).Select(x => new UserFull()
+            {
+                Id = x.Id,
+                Email=x.Email,
+                Username=x.UserName,
+                Roles=x.AspNetRoles.Select(r=> new Role() { Id=r.Id}).ToList(),
+            }).FirstOrDefault();
             return model;
         }
-        public bool Save(bool IsExisting,UserFull Task)
+        public void Save(bool IsExisting,UserFullViewModel User)
         {
-            return true;
+            using (_db)
+            {
+                if (IsExisting)
+                {
+                    var dataModel = _db.AspNetUsers.Where(x => x.Id == User.Id).First();
+                    dataModel.Id = User.Id;
+                    dataModel.Email = User.Email;
+                    dataModel.UserName = User.Username;
+                    if (User.IsAdmin)
+                    {
+                        var adminrole = _db.AspNetRoles.FirstOrDefault();
+                        dataModel.AspNetRoles.Add(adminrole);
+                    }
+                }
+                _db.SaveChanges();
+            }
         }
-        public void Delete(int Id)
+        public void Delete(string UserId)
         {
-
+            using (_db)
+            {
+                var dataModel = _db.AspNetUsers.Where(x => x.Id == UserId).First();
+                _db.AspNetUsers.Remove(dataModel);
+                _db.SaveChanges();
+            }
         }
     }
 }

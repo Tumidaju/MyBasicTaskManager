@@ -248,8 +248,8 @@
     <Compile Include="Models\Tasks\TasksViewModel.cs" />
     <Compile Include="Models\Tasks\TaskViewModel.cs" />
     <Compile Include="Models\Users\UserFormViewModel.cs" />
-    <Compile Include="Models\Users\UserSimpleViewModel.cs" />
-    <Compile Include="Models\Users\UserSimple.cs" />
+    <Compile Include="Models\Users\Role.cs" />
+    <Compile Include="Models\Users\UserFullViewModel.cs" />
     <Compile Include="Models\Users\UsersViewModel.cs" />
     <Compile Include="Models\Users\UserFull.cs" />
     <Compile Include="Models\Tasks\TaskFull.cs" />
