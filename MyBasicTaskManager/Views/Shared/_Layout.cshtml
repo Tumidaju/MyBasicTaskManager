@@ -17,16 +17,30 @@
             <div class="container d-flex flex-column flex-md-row justify-content-between">
                 <a href="#" class="py-2 d-none d-md-inline-block" style="padding: 4px !important;" title="My Basic Task Manager" data-toggle="tooltip"><i class="fa fa-diamond" style="font-size:30px"></i></a>
                 @Html.ActionLink("Start", "Index", "Home", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
-                @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
-                @Html.ActionLink("Statistics", "Index", "Statistics", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
-                @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
-                @Html.Partial("_LoginPartial")
-            </div>
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+                    @Html.ActionLink("Statistics", "Index", "Statistics", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+                }
+                else
+                {
+                    <style>
+                        .site-header .container {
+                            max-width: 400px !important;
+                        }
+                    </style>
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+                }
+                    @Html.Partial("_LoginPartial")
+                </div>
         </nav>
     </header>
     <main>
         <div class="container-fluid body-content" style="padding:20px 100px">
-            <div class="row">
+            <div class="title-row row">
                 <div class="col-12">
                     <h1>
                         @ViewBag.Title

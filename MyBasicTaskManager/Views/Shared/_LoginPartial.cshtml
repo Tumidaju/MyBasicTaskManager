@@ -5,12 +5,11 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "py-2 d-none d-md-inline-block" })
-        <a href="javascript:document.getElementById('logoutForm').submit()" class="py-2 d-none d-md-inline-block">Log off</a>
+        @Html.ActionLink("MY ACCOUNT", "Index", "Manage", routeValues: null, htmlAttributes: new {  @class = "py-2 d-none d-md-inline-block"})
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="py-2 d-none d-md-inline-block" style="padding: 0 4rem" data-toggle="tooltip" title="Sign out"><i class="fa fa-sign-out"></i></a>
     }
 }
 else
 {
-    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "py-2 d-none d-md-inline-block" })
-    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "py-2 d-none d-md-inline-block" })
+    @Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "py-2 d-none d-md-inline-block" })
 }
