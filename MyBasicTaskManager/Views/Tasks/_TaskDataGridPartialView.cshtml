@@ -1,41 +1,48 @@
 ﻿@model List<MyBasicTaskManager.Models.TaskViewModel>
-<table id="grid-data" class="table table-condensed table-hover table-striped">
-    <thead>
-        <tr>
-            <th data-column-id="Id" data-type="numeric">ID</th>
-            <th data-column-id="Category">Category</th>
-            <th data-column-id="Name">Name</th>
-            <th data-column-id="Description">Description</th>
-            <th data-column-id="Rank">Priority</th>
-            <th data-column-id="Status">Status</th>
-            <th data-column-id="CreationDate">Creation date</th>
-            <th data-column-id="ComletedDate">Date of completion</th>
-            <th data-column-id="DeadlineDate">Deadline</th>
-            <th data-column-id="progres" data-formatter="progres" data-sortable="false">Progres</th>
-            <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var task in Model)
-        {
-            <tr>
-                <td>@task.Id</td>
-                <td>@task.Category.Name</td>
-                <td>@task.Name</td>
-                <td>@task.Description</td>
-                <td>@task.Rank.Name</td>
-                <td>@task.Status.Name</td>
-                <td>@task.CreationDate</td>
-                <td>@task.CreationDate</td>
-                <td>@task.DeadlineDate</td>
-                <td>@task.Progres</td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-12">
+        <table id="grid-data" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="Id" data-type="numeric">ID</th>
+                    <th data-column-id="Category">Category</th>
+                    <th data-column-id="Name">Name</th>
+                    <th data-column-id="Description">Description</th>
+                    <th data-column-id="Rank">Priority</th>
+                    <th data-column-id="Status">Status</th>
+                    <th data-column-id="CreationDate">Creation date</th>
+                    <th data-column-id="ComletedDate">Date of completion</th>
+                    <th data-column-id="DeadlineDate">Deadline</th>
+                    <th data-column-id="progres" data-formatter="progres" data-sortable="false">Progres</th>
+                    <th data-column-id="link" data-formatter="link" data-sortable="false">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in Model)
+                {
+                    <tr>
+                        <td>@task.Id</td>
+                        <td>@task.Category.Name</td>
+                        <td>@task.Name</td>
+                        <td>@task.Description</td>
+                        <td>@task.Rank.Name</td>
+                        <td>@task.Status.Name</td>
+                        <td>@task.CreationDate</td>
+                        <td>@task.CompletionDate</td>
+                        <td>@task.DeadlineDate</td>
+                        <td>@task.Progres</td>
+                        <td>
+                            @Html.ActionLink("Edit", "TaskForm", "Tasks", routeValues: new { IsExisting = true, Id = task.Id }, htmlAttributes: new { @class = "" })
+                            @Html.ActionLink("Delete", "DeleteTask", "Tasks", routeValues: new { Id = task.Id }, htmlAttributes: new { @class = "" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 <script>
     $(function () {
-        $("#grid-data").bootgrid();
+        //$("#grid-data").bootgrid();
     });
 </script>

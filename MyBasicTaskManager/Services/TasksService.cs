@@ -77,7 +77,7 @@ namespace MyBasicTaskManager.Services
             }).FirstOrDefault();
             return model;
         }
-        public bool Save(bool IsExisting,TaskFull Task, string UserId)
+        public bool Save(bool IsExisting, TaskFullViewModel Task, string UserId)
         {
             return true;
         }

@@ -244,6 +244,7 @@
     <Compile Include="Models\Statistics\StatisticsFull.cs" />
     <Compile Include="Models\Rank.cs" />
     <Compile Include="Models\Tasks\TaskFormViewModel.cs" />
+    <Compile Include="Models\Tasks\TaskFullViewModel.cs" />
     <Compile Include="Models\Tasks\TasksViewModel.cs" />
     <Compile Include="Models\Tasks\TaskViewModel.cs" />
     <Compile Include="Models\Users\UserFormViewModel.cs" />

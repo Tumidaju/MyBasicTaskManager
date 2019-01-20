@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MyBasicTaskManager.Services
 {
@@ -39,6 +40,35 @@ namespace MyBasicTaskManager.Services
                 Color = x.COLOR,
             }).ToList();
             return model;
+        } 
+
+        public IEnumerable<SelectListItem> GetRanksDropdown()
+        {
+            var model = _db.RANK.Select(x => new SelectListItem()
+            {
+                Value = x.ID.ToString(),
+                Text = x.NAME,
+            }).ToList();
+            return model;
         }
+        public IEnumerable<SelectListItem> GetStatusesDropdown()
+        {
+            var model = _db.STATUS.Select(x => new SelectListItem()
+            {
+                Value = x.ID.ToString(),
+                Text = x.NAME,
+            }).ToList();
+            return model;
+        }
+        public IEnumerable<SelectListItem> GetCategoriesDropdown()
+        {
+            var model = _db.CATEGORY.Select(x => new SelectListItem()
+            {
+                Value = x.ID.ToString(),
+                Text = x.NAME,
+            }).ToList();
+            return model;
+        }
+
     }
 }

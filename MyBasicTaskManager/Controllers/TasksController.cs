@@ -31,15 +31,19 @@ namespace MyBasicTaskManager.Controllers
         }
         public ActionResult TaskForm(bool IsExisting,int Id=0)
         {
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<TaskFull, TaskFullViewModel>();
+            });
+            IMapper mapper = config.CreateMapper();
             var Viewmodel = new TaskFormViewModel()
             {
-                RankList = _staticDataService.GetRanks(),
-                CategoryList = _staticDataService.GetCategories(),
-                StatusList = _staticDataService.GetStatuses()
+                RankList = _staticDataService.GetRanksDropdown(),
+                CategoryList = _staticDataService.GetCategoriesDropdown(),
+                StatusList = _staticDataService.GetStatusesDropdown()
             };
             if (IsExisting)
             {
-                var model = _tasksService.Get(Id, _usersService.GetCurrentUserId());
+                Viewmodel.Task = mapper.Map<TaskFull, TaskFullViewModel>(_tasksService.Get(Id, _usersService.GetCurrentUserId()));
                 ViewBag.Title = "Edit task";
                 Viewmodel.IsExisting = true;
             }
@@ -53,7 +57,7 @@ namespace MyBasicTaskManager.Controllers
         [HttpPost]
         public ActionResult TaskForm(TaskFormViewModel taskFormViewModel)
         {
-            //taskFormViewModel.Task.TryUpdateModel();
+            TryValidateModel(taskFormViewModel.Task);
             if (ModelState.IsValid)
             {
                 _tasksService.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task, _usersService.GetCurrentUserId());
@@ -61,9 +65,9 @@ namespace MyBasicTaskManager.Controllers
             }
             else
             {
-                taskFormViewModel.RankList = _staticDataService.GetRanks();
-                taskFormViewModel.CategoryList = _staticDataService.GetCategories();
-                taskFormViewModel.StatusList = _staticDataService.GetStatuses();
+                taskFormViewModel.RankList = _staticDataService.GetRanksDropdown();
+                taskFormViewModel.CategoryList = _staticDataService.GetCategoriesDropdown();
+                taskFormViewModel.StatusList = _staticDataService.GetStatusesDropdown();
                 return View(taskFormViewModel);
             }
         }
