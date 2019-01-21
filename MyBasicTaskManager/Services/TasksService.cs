@@ -62,19 +62,19 @@ namespace MyBasicTaskManager.Services
                 Progres = x.PROGRES,
                 Category = new Category()
                 {
-                    Id = x.CATEGORY.ID,
+                    Id = x.CATEGORY_ID,
                     Name = x.CATEGORY.NAME,
                     Color = x.CATEGORY.COLOR
                 },
                 Rank = new Rank()
                 {
-                    Id = x.RANK.ID,
+                    Id = x.RANK_ID,
                     Name = x.RANK.NAME,
                     Color = x.RANK.COLOR
                 },
                 Status = new Status()
                 {
-                    Id = x.STATUS.ID,
+                    Id = x.STATUS_ID,
                     Name = x.STATUS.NAME,
                     Color = x.STATUS.COLOR
                 },

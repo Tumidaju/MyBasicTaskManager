@@ -4,7 +4,7 @@
         <table id="grid-data" class="table table-condensed table-hover table-striped">
             <thead>
                 <tr>
-                    <th data-column-id="Id" data-type="numeric">ID</th>
+                    <th data-column-id="Id">ID</th>
                     <th data-column-id="Username">Username</th>
                     <th data-column-id="Email">Email</th>
                     <th data-column-id="IsAdmin">Is Admin</th>
@@ -27,10 +27,10 @@
                             <td> No </td>
                         }
                         <td>
-                            @Html.ActionLink("Edit", "UserForm", "Users", routeValues: new { IsExisting = true, Id = user.Id }, htmlAttributes: new { @class = "" })
+                            @Html.ActionLink("Edit", "UserForm", "Users", routeValues: new { IsExisting = true, Id = user.Id }, htmlAttributes: new { @class = "btn btn-primary" })
                             @if (@user.Id != Model.CurrentUserId)
                             {
-                                @Html.ActionLink("Delete", "DeleteUser", "Users", routeValues: new { Id = user.Id }, htmlAttributes: new { @class = "" })
+                                @Html.ActionLink("Delete", "DeleteUser", "Users", routeValues: new { Id = user.Id }, htmlAttributes: new { @class = "btn btn-primary" })
                             }
                         </td>
                     </tr>
@@ -41,6 +41,6 @@
 </div>
 <script>
     $(function () {
-        //$("#grid-data").bootgrid();
+        $("#grid-data").bootgrid();
     });
 </script>

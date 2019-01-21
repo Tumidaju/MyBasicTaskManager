@@ -15,8 +15,7 @@
     <header>
         <nav class="site-header sticky-top py-1">
             <div class="container d-flex flex-column flex-md-row justify-content-between">
-                <a href="#" class="py-2 d-none d-md-inline-block" style="padding: 4px !important;" title="My Basic Task Manager" data-toggle="tooltip"><i class="fa fa-diamond" style="font-size:30px"></i></a>
-                @Html.ActionLink("Start", "Index", "Home", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+                <a href="/" class="py-2 d-none d-md-inline-block" style="padding: 4px !important;" title="My Basic Task Manager" data-toggle="tooltip"><i class="fa fa-diamond" style="font-size:30px"></i></a>
                 @if (Request.IsAuthenticated)
                 {
                     @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
@@ -26,7 +25,7 @@
                 {
                     <style>
                         .site-header .container {
-                            max-width: 400px !important;
+                            max-width: 200px !important;
                         }
                     </style>
                 }

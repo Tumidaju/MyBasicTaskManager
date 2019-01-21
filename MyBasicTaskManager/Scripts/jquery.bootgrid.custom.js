@@ -116,7 +116,7 @@
                     id: data.columnId,
                     identifier: that.identifier == null && data.identifier || false,
                     converter: that.options.converters[data.converter || data.type] || that.options.converters["string"],
-                    text: $this.text(),
+                    text: $this.html(),
                     align: data.align || "left",
                     headerAlign: data.headerAlign || "left",
                     cssClass: data.cssClass || "",
@@ -282,7 +282,7 @@
 
                 $.each(that.columns, function (i, column)
                 {
-                    row[column.id] = column.converter.from(cells.eq(i).text());
+                    row[column.id] = column.converter.from(cells.eq(i).html());
                 });
 
                 appendRow.call(that, row);

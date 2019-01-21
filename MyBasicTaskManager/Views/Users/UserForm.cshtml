@@ -5,7 +5,7 @@
     @Html.ValidationSummary(true);
     @Html.HiddenFor(model => model.User.Id)
     @Html.HiddenFor(model => model.IsExisting)
-    <div class="row">
+    <div class="row mt-4 mb-4">
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.User.Username, new { @class = "", @for = "Name" })
@@ -21,14 +21,15 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="form-gorup">
+            <div class="form-gorup" style="padding-top:38px;">
                 @Html.CheckBoxFor(model => model.User.IsAdmin, new { @class = "", @placeholder = "", @id = "Status" })
-                @Html.LabelFor(model => model.User.IsAdmin, new { @class = "", @for = "Status" })
+                <label for="Status">User has administrator role</label>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12" style="text-align:right">
+            @Html.ActionLink("Back", "Index", "Users", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </div>

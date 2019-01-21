@@ -5,7 +5,7 @@
     @Html.ValidationSummary(true);
     @Html.HiddenFor(model => model.Task.Id)
     @Html.HiddenFor(model => model.IsExisting)
-    <div class="row">
+    <div class="row mt-4 mb-4">
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.Name, new { @class = "", @for = "Name" })
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.Description, new { @class = "", @for = "Description" })
@@ -49,7 +49,7 @@
             @Html.ValidationMessageFor(model => model.Task.Progres)
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.Category, new { @class = "", @for = "Category" })
@@ -72,11 +72,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col align-self-end" style="text-align: right;">
+            @Html.ActionLink("Back", "Index", "Tasks", routeValues: new { }, htmlAttributes: new { @class = "btn btn-primary" })
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </div>
 }
 <script>
-
+    var model = @Html.Raw(Json.Encode(Model));
+console.log(model)
+    $(function () {
+        $("#Status").val(@Model.Task.Status).change();
+        $("#Rank").val(@Model.Task.Rank).change();
+        $("#Category").val(@Model.Task.Category).change();
+    });
 </script>

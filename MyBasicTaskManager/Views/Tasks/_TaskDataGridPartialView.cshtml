@@ -15,27 +15,37 @@
                     <th data-column-id="ComletedDate">Date of completion</th>
                     <th data-column-id="DeadlineDate">Deadline</th>
                     <th data-column-id="progres" data-formatter="progres" data-sortable="false">Progres</th>
-                    <th data-column-id="link" data-formatter="link" data-sortable="false">Options</th>
+                    <th data-column-id="link" data-sortable="false">Options</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var task in Model)
                 {
+                    string color = "red";
+                    if (task.DeadlineDate > DateTime.Now)
+                    {
+                        color = "green";
+                    }
                     <tr>
                         <td>@task.Id</td>
-                        <td>@task.Category.Name</td>
+                        <td><span class="badge badge-secondary" style="background-color:@task.Category.Color;font-size: 1em;">@task.Category.Name</span></td>
                         <td>@task.Name</td>
                         <td>@task.Description</td>
-                        <td>@task.Rank.Name</td>
-                        <td>@task.Status.Name</td>
+                        <td><span class="badge badge-secondary" style="background-color:@task.Rank.Color;font-size: 1em;">@task.Rank.Name</span></td>
+                        <td><span class="badge badge-secondary" style="background-color:@task.Status.Color;font-size: 1em;">@task.Status.Name</span></td>
                         <td>@task.CreationDate</td>
                         <td>@task.EditDate</td>
                         <td>@task.CompletionDate</td>
-                        <td>@task.DeadlineDate</td>
-                        <td>@task.Progres</td>
+                        <td><span class="badge badge-secondary" style="background-color:@color;font-size: 1em;">@task.DeadlineDate.ToString()</span></td>
                         <td>
-                            @Html.ActionLink("Edit", "TaskForm", "Tasks", routeValues: new { IsExisting = true, Id = task.Id }, htmlAttributes: new { @class = "" })
-                            @Html.ActionLink("Delete", "DeleteTask", "Tasks", routeValues: new { Id = task.Id }, htmlAttributes: new { @class = "" })
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: @task.Progres%" aria-valuenow="@task.Progres" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "TaskForm", "Tasks", routeValues: new { IsExisting = true, Id = task.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Delete", "DeleteTask", "Tasks", routeValues: new { Id = task.Id }, htmlAttributes: new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 }
@@ -45,6 +55,12 @@
 </div>
 <script>
     $(function () {
-        //$("#grid-data").bootgrid();
+        $("#grid-data").bootgrid({
+            formatters: {
+                "link": function (column, row) {
+                    return "<a href=\"#\">" + column.id + ": " + row.id + "</a>";
+                }
+            }
+        });
     });
 </script>

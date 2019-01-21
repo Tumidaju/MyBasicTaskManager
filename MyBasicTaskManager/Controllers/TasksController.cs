@@ -32,7 +32,7 @@ namespace MyBasicTaskManager.Controllers
         public ActionResult TaskForm(bool IsExisting,int Id=0)
         {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<TaskFull, TaskFullViewModel>();
+                cfg.CreateMap<TaskFull, TaskFullViewModel>().ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Id)).ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.Id)).ForMember(dest => dest.Rank, opt => opt.MapFrom(src => src.Rank.Id));
             });
             IMapper mapper = config.CreateMapper();
             var Viewmodel = new TaskFormViewModel()

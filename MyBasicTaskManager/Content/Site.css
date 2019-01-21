@@ -85,3 +85,13 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
+footer {
+    text-align: center;
+}
+.form-gorup label {
+    text-transform: uppercase
+}
+.bootgrid-table
+{
+    table-layout: auto;
+}
