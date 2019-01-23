@@ -19,6 +19,7 @@ namespace MyBasicTaskManager.Models.Infrastructure
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CATEGORY> CATEGORY { get; set; }
         public virtual DbSet<RANK> RANK { get; set; }
+        public virtual DbSet<STATISTICS> STATISTICS { get; set; }
         public virtual DbSet<STATUS> STATUS { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TASK> TASK { get; set; }
@@ -39,6 +40,12 @@ namespace MyBasicTaskManager.Models.Infrastructure
                 .HasMany(e => e.AspNetUserLogins)
                 .WithRequired(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.STATISTICS)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.USER_ID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.TASK)

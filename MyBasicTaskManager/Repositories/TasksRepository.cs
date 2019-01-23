@@ -6,11 +6,12 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
 
-namespace MyBasicTaskManager.Services
+namespace MyBasicTaskManager.Repositories
 {
-    public class TasksService
+    public class TasksRepository
     {
         private readonly DatabaseModel _db = new DatabaseModel();
+        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository();
         public List<TaskFull> GetAll(string UserId)
         {
             var model = _db.TASK.Where(x=>x.USER_ID== UserId).Select(x => new TaskFull()
@@ -88,6 +89,9 @@ namespace MyBasicTaskManager.Services
                 if(IsExisting)
                 {
                     var dataModel = _db.TASK.Where(x => x.ID == Task.Id && x.USER_ID== UserId).First();
+                    var previousStatus = dataModel.STATUS_ID;
+                    var previousDeadline = dataModel.DEADLINE_DATE;
+
                     dataModel.ID = Task.Id;
                     dataModel.NAME = Task.Name;
                     dataModel.DESCRIPTION = Task.Description;
@@ -103,6 +107,21 @@ namespace MyBasicTaskManager.Services
                     dataModel.CATEGORY_ID = Task.Category;
                     dataModel.RANK_ID = Task.Rank;
                     dataModel.STATUS_ID = Task.Status;
+                    if (_db.SaveChanges() > 0)
+                    {
+                        if (previousStatus != 4 && Task.Status == 4)
+                            _statisticsRepository.SetFinishedTasks(UserId, 1);
+                        if (previousStatus == 4 && Task.Status != 4)
+                            _statisticsRepository.SetFinishedTasks(UserId, -1); 
+                        if (previousDeadline == null && Task.DeadlineDate != null)
+                            _statisticsRepository.SetTasksWithDeadline(UserId, 1);
+                        if (previousDeadline != null && Task.DeadlineDate == null)
+                            _statisticsRepository.SetTasksWithDeadline(UserId, -1);
+                        if (Task.DeadlineDate != null && Task.DeadlineDate>DateTime.Now && Task.Status == 4)
+                            _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, 1);
+                        if (Task.DeadlineDate != null && Task.DeadlineDate > DateTime.Now && previousStatus == 4 && Task.Status != 4 )
+                            _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, -1);
+                    }
                 }
                 else
                 {
@@ -123,8 +142,14 @@ namespace MyBasicTaskManager.Services
                     if (Task.Status == 4)
                         dataModel.COMPLETION_DATE = DateTime.Now;
                     _db.TASK.Add(dataModel);
+                    if (_db.SaveChanges() > 0)
+                    {
+                        _statisticsRepository.SetCreatedTasks(UserId);
+                        _statisticsRepository.SetLastTaskCreation(UserId);
+                        if (Task.DeadlineDate != null)
+                            _statisticsRepository.SetTasksWithDeadline(UserId, 1);
+                    }
                 }
-                _db.SaveChanges();
             }
             
         }

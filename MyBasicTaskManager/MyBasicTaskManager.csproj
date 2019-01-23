@@ -247,6 +247,7 @@
     <Compile Include="Models\Tasks\TaskFullViewModel.cs" />
     <Compile Include="Models\Tasks\TasksViewModel.cs" />
     <Compile Include="Models\Tasks\TaskViewModel.cs" />
+    <Compile Include="Models\Infrastructure\STATISTICS.cs" />
     <Compile Include="Models\Users\UserFormViewModel.cs" />
     <Compile Include="Models\Users\Role.cs" />
     <Compile Include="Models\Users\UserFullViewModel.cs" />
@@ -254,10 +255,10 @@
     <Compile Include="Models\Users\UserFull.cs" />
     <Compile Include="Models\Tasks\TaskFull.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\StaticDataService.cs" />
-    <Compile Include="Services\TasksService.cs" />
-    <Compile Include="Services\StatisticsService.cs" />
-    <Compile Include="Services\UsersService.cs" />
+    <Compile Include="Repositories\StaticDataRepository.cs" />
+    <Compile Include="Repositories\TasksRepository.cs" />
+    <Compile Include="Repositories\StatisticsRepository.cs" />
+    <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

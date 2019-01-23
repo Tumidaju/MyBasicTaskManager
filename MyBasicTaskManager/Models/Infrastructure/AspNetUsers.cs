@@ -14,6 +14,7 @@ namespace MyBasicTaskManager.Models.Infrastructure
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             TASK = new HashSet<TASK>();
+            STATISTICS = new HashSet<STATISTICS>();
             AspNetRoles = new HashSet<AspNetRoles>();
         }
 
@@ -52,6 +53,8 @@ namespace MyBasicTaskManager.Models.Infrastructure
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TASK> TASK { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<STATISTICS> STATISTICS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }

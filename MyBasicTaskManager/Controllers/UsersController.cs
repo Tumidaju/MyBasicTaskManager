@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MyBasicTaskManager.Models;
-using MyBasicTaskManager.Services;
+using MyBasicTaskManager.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +12,15 @@ namespace MyBasicTaskManager.Controllers
     [Authorize(Roles ="admin")]
     public class UsersController : Controller
     {
-        private readonly UsersService _usersService = new UsersService();
+        private readonly UsersRepository _usersRepository = new UsersRepository();
 
         public ActionResult Index()
         {
             ViewBag.Title = "Manage Users";
             var model = new UsersViewModel()
             {
-                Users = _usersService.GetAll(),
-                CurrentUserId = _usersService.GetCurrentUserId()
+                Users = _usersRepository.GetAll(),
+                CurrentUserId = _usersRepository.GetCurrentUserId()
             };
             return View(model);
         }
@@ -35,7 +35,7 @@ namespace MyBasicTaskManager.Controllers
             {
                 ViewBag.Title = "Edit user";
                 Viewmodel.IsExisting = true;
-                var user = _usersService.Get(Id);
+                var user = _usersRepository.Get(Id);
                 Viewmodel.User= mapper.Map<UserFull, UserFullViewModel>(user);
                 if (user.Roles.Count() > 0)
                     Viewmodel.User.IsAdmin = true;
@@ -48,7 +48,7 @@ namespace MyBasicTaskManager.Controllers
             TryValidateModel(userFormViewModel.User);
             if (ModelState.IsValid)
             {
-                _usersService.Save(userFormViewModel.IsExisting, userFormViewModel.User);
+                _usersRepository.Save(userFormViewModel.IsExisting, userFormViewModel.User);
                 return RedirectToAction("Index");
             }
             else
@@ -58,8 +58,8 @@ namespace MyBasicTaskManager.Controllers
         }
         public ActionResult DeleteUser(string Id)
         {
-            if(Id!=_usersService.GetCurrentUserId())
-                _usersService.Delete(Id);
+            if(Id!=_usersRepository.GetCurrentUserId())
+                _usersRepository.Delete(Id);
             return RedirectToAction("Index");
         }
     }

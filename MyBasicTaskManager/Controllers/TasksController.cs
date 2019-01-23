@@ -1,5 +1,5 @@
 ﻿using MyBasicTaskManager.Models;
-using MyBasicTaskManager.Services;
+using MyBasicTaskManager.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +13,9 @@ namespace MyBasicTaskManager.Controllers
     [Authorize]
     public class TasksController : Controller
     {
-        private readonly TasksService _tasksService = new TasksService();
-        private readonly StaticDataService _staticDataService = new StaticDataService();
-        private readonly UsersService _usersService = new UsersService();
+        private readonly TasksRepository _tasksRepository = new TasksRepository();
+        private readonly StaticDataRepository _staticDataRepository = new StaticDataRepository();
+        private readonly UsersRepository _usersRepository = new UsersRepository();
         public ActionResult Index()
         {
             ViewBag.Title = "My Tasks";
@@ -25,7 +25,7 @@ namespace MyBasicTaskManager.Controllers
             IMapper mapper = config.CreateMapper();
             var model = new TasksViewModel()
             {
-                AllTasks = mapper.Map<List<TaskFull>, List<TaskViewModel>>(_tasksService.GetAll(_usersService.GetCurrentUserId())),
+                AllTasks = mapper.Map<List<TaskFull>, List<TaskViewModel>>(_tasksRepository.GetAll(_usersRepository.GetCurrentUserId())),
             };
             return View(model);
         }
@@ -37,14 +37,14 @@ namespace MyBasicTaskManager.Controllers
             IMapper mapper = config.CreateMapper();
             var Viewmodel = new TaskFormViewModel()
             {
-                RankList = _staticDataService.GetRanksDropdown(),
-                CategoryList = _staticDataService.GetCategoriesDropdown(),
-                StatusList = _staticDataService.GetStatusesDropdown(),
+                RankList = _staticDataRepository.GetRanksDropdown(),
+                CategoryList = _staticDataRepository.GetCategoriesDropdown(),
+                StatusList = _staticDataRepository.GetStatusesDropdown(),
                 Task=new TaskFullViewModel() { Id=0, Progres = 0 }
             };
             if (IsExisting)
             {
-                Viewmodel.Task = mapper.Map<TaskFull, TaskFullViewModel>(_tasksService.Get(Id, _usersService.GetCurrentUserId()));
+                Viewmodel.Task = mapper.Map<TaskFull, TaskFullViewModel>(_tasksRepository.Get(Id, _usersRepository.GetCurrentUserId()));
                 ViewBag.Title = "Edit task";
                 Viewmodel.IsExisting = true;
             }
@@ -61,20 +61,20 @@ namespace MyBasicTaskManager.Controllers
             TryValidateModel(taskFormViewModel.Task);
             if (ModelState.IsValid)
             {
-                _tasksService.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task, _usersService.GetCurrentUserId());
+                _tasksRepository.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task, _usersRepository.GetCurrentUserId());
                 return RedirectToAction("Index");
             }
             else
             {
-                taskFormViewModel.RankList = _staticDataService.GetRanksDropdown();
-                taskFormViewModel.CategoryList = _staticDataService.GetCategoriesDropdown();
-                taskFormViewModel.StatusList = _staticDataService.GetStatusesDropdown();
+                taskFormViewModel.RankList = _staticDataRepository.GetRanksDropdown();
+                taskFormViewModel.CategoryList = _staticDataRepository.GetCategoriesDropdown();
+                taskFormViewModel.StatusList = _staticDataRepository.GetStatusesDropdown();
                 return View(taskFormViewModel);
             }
         }
         public ActionResult DeleteTask(int Id)
         {
-             _tasksService.Delete(Id, _usersService.GetCurrentUserId());
+             _tasksRepository.Delete(Id, _usersRepository.GetCurrentUserId());
             return RedirectToAction("Index");
         }
     }

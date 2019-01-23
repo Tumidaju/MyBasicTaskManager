@@ -79,11 +79,11 @@
     </div>
 }
 <script>
-    var model = @Html.Raw(Json.Encode(Model));
-console.log(model)
     $(function () {
-        $("#Status").val(@Model.Task.Status).change();
-        $("#Rank").val(@Model.Task.Rank).change();
-        $("#Category").val(@Model.Task.Category).change();
+        if (@Model.IsExisting) {
+            $("#Status").val(@Model.Task.Status).change();
+            $("#Rank").val(@Model.Task.Rank).change();
+            $("#Category").val(@Model.Task.Category).change();
+        }
     });
 </script>

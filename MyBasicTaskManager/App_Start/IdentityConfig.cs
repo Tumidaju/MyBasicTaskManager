@@ -14,7 +14,7 @@ using MyBasicTaskManager.Models;
 
 namespace MyBasicTaskManager
 {
-    public class EmailService : IIdentityMessageService
+    public class EmailRepository : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
@@ -23,7 +23,7 @@ namespace MyBasicTaskManager
         }
     }
 
-    public class SmsService : IIdentityMessageService
+    public class SmsRepository : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
@@ -76,8 +76,8 @@ namespace MyBasicTaskManager
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+            manager.EmailService = new EmailRepository();
+            manager.SmsService = new SmsRepository();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

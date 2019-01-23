@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MyBasicTaskManager.Services
+namespace MyBasicTaskManager.Repositories
 {
-    public class UsersService
+    public class UsersRepository
     {
         private readonly DatabaseModel _db = new DatabaseModel();
         public List<UserFull> GetAll()

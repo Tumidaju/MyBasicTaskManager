@@ -1,1 +1,5 @@
 ﻿@model MyBasicTaskManager.Models.StatisticsViewModel
+<script>
+var model = @Html.Raw(Json.Encode(Model));
+console.log(model)
+</script>

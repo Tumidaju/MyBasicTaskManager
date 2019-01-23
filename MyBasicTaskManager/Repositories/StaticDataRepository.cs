@@ -6,9 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyBasicTaskManager.Services
+namespace MyBasicTaskManager.Repositories
 {
-    public class StaticDataService
+    public class StaticDataRepository
     {
         private readonly DatabaseModel _db = new DatabaseModel();
         public List<Rank> GetRanks()
