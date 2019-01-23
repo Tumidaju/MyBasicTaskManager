@@ -1,5 +1,81 @@
 ﻿@model MyBasicTaskManager.Models.StatisticsViewModel
-<script>
-var model = @Html.Raw(Json.Encode(Model));
-console.log(model)
-</script>
+<div class="row">
+    @if (!Model.Active)
+    {
+        <div class="col-12">
+            <div class="card">
+                <h5 class="card-header">Ooops - no data found.</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Hello newbie!</h5>
+                    <p class="card-text">It occures that you are new here, so we dont have any statistics of your activity. Start creating tasks to fill our database and come here later.</p>
+                    @Html.ActionLink("Create First Task", "TaskForm", "Tasks", routeValues: new { IsExisting = false }, htmlAttributes: new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="card">
+                <h5 class="card-header">Statistic in numbers</h5>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Created tasks</td>
+                                <td>@Model.CreatedTasks</td>
+                            </tr>
+                            <tr>
+                                <td>Deleted tasks</td>
+                                <td>@Model.DeletedTasks</td>
+                            </tr>
+                            <tr>
+                                <td>Finished tasks</td>
+                                <td>@Model.FinishedTasks</td>
+                            </tr>
+                            <tr>
+                                <td>Tasks with deadline</td>
+                                <td>@Model.TasksWithDeadline</td>
+                            </tr>
+                            <tr>
+                                <td>Tasks finished before deadline</td>
+                                <td>@Model.TasksFinishedBeforeDeadline</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="card">
+                <h5 class="card-header">Statistic in dates</h5>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Date of first task creation</td>
+                                <td>@Model.FirstTaskCreation</td>
+                            </tr>
+                            <tr>
+                                <td>Date of last task creation</td>
+                                <td>@Model.LastTaskCreation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

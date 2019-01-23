@@ -159,6 +159,21 @@ namespace MyBasicTaskManager.Repositories
             {
                 var dataModel = _db.TASK.Where(x => x.ID == Id && x.USER_ID == UserId).First();
                 _db.TASK.Remove(dataModel);
+                if (_db.SaveChanges() > 0)
+                {
+                    _statisticsRepository.SetDeletedTasks(UserId);
+                }
+            }
+        }
+        public void ClearData(string UserId)
+        {
+            using (_db)
+            {
+                var model = _db.TASK.Where(x => x.USER_ID == UserId).ToList();
+                if (model != null)
+                {
+                    _db.TASK.RemoveRange(model);
+                }
                 _db.SaveChanges();
             }
         }

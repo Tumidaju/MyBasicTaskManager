@@ -10,6 +10,7 @@ namespace MyBasicTaskManager.Repositories
     public class UsersRepository
     {
         private readonly DatabaseModel _db = new DatabaseModel();
+        private readonly TasksRepository _tasksRepository = new TasksRepository();
         public List<UserFull> GetAll()
         {
             var model = _db.AspNetUsers.Select(x => new UserFull()
@@ -18,7 +19,8 @@ namespace MyBasicTaskManager.Repositories
                 Email = x.Email,
                 Username = x.UserName,
                 Roles = x.AspNetRoles.Select(r => new Role() { Id = r.Id }).ToList(),
-            }).ToList();
+                NumberOfTasks=x.TASK.Count()
+            }).ToList();            
             return model;
         }
         public string GetCurrentUserId()

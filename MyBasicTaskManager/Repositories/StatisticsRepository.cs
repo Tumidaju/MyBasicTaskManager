@@ -113,5 +113,31 @@ namespace MyBasicTaskManager.Repositories
                 _db.SaveChanges();
             }
         }
+        public void SetDeletedTasks(string UserId)
+        {
+            using (_db)
+            {
+                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+                if (model == null)
+                {
+                    CreateUserRecord(UserId);
+                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+                }
+                model.DELETED_TASKS = model.DELETED_TASKS+1;
+                _db.SaveChanges();
+            }
+        }
+        public void ClearData(string UserId)
+        {
+            using (_db)
+            {
+                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+                if (model != null)
+                {
+                    _db.STATISTICS.Remove(model);
+                }
+                _db.SaveChanges();
+            }
+        }
     }
 }

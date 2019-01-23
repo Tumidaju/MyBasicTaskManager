@@ -16,16 +16,23 @@
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.User.Email, new { @class = "", @for = "Rank" })
-                @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "", @id = "Rank" })
+                @Html.TextBoxFor(model => model.User.Email, new { @class = "form-control", @placeholder = "", @id = "Email" })
                 @Html.ValidationMessageFor(model => model.User.Email)
             </div>
         </div>
+        @if(Model.User.IsAdmin)
+        {
+            @Html.HiddenFor(model => model.User.IsAdmin);
+        }
+        else
+        {
         <div class="col-4">
             <div class="form-gorup" style="padding-top:38px;">
-                @Html.CheckBoxFor(model => model.User.IsAdmin, new { @class = "", @placeholder = "", @id = "Status" })
+                @Html.CheckBoxFor(model => model.User.IsAdmin, new { @class = "", @placeholder = "", @id = "Admin" })
                 <label for="Status">User has administrator role</label>
             </div>
         </div>
+        }
     </div>
     <div class="row">
         <div class="col-12" style="text-align:right">

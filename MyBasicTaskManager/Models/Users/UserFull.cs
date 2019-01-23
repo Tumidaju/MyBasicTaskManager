@@ -11,5 +11,6 @@ namespace MyBasicTaskManager.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public List<Role> Roles { get; set; }
+        public int NumberOfTasks { get; set; }
     }
 }

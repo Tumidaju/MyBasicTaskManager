@@ -13,7 +13,8 @@ namespace MyBasicTaskManager.Controllers
     public class UsersController : Controller
     {
         private readonly UsersRepository _usersRepository = new UsersRepository();
-
+        private readonly TasksRepository _tasksRepository = new TasksRepository();
+        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository();
         public ActionResult Index()
         {
             ViewBag.Title = "Manage Users";
@@ -60,6 +61,12 @@ namespace MyBasicTaskManager.Controllers
         {
             if(Id!=_usersRepository.GetCurrentUserId())
                 _usersRepository.Delete(Id);
+            return RedirectToAction("Index");
+        }
+        public ActionResult ClearData(string Id)
+        {
+            _tasksRepository.ClearData(Id);
+            _statisticsRepository.ClearData(Id);
             return RedirectToAction("Index");
         }
     }

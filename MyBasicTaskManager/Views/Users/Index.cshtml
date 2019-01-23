@@ -7,6 +7,7 @@
                     <th data-column-id="Id">ID</th>
                     <th data-column-id="Username">Username</th>
                     <th data-column-id="Email">Email</th>
+                    <th data-column-id="NumberOfTasks">Number of tasks</th>
                     <th data-column-id="IsAdmin">Is Admin</th>
                     <th data-column-id="link" data-formatter="link" data-sortable="false">Options</th>
                 </tr>
@@ -18,6 +19,7 @@
                         <td>@user.Id</td>
                         <td>@user.Username</td>
                         <td>@user.Email</td>
+                        <td>@user.NumberOfTasks</td>
                         @if (@user.Roles.Count() > 0)
                         {
                             <td> Yes </td>
@@ -27,6 +29,7 @@
                             <td> No </td>
                         }
                         <td>
+                            @Html.ActionLink("Clear Data", "ClearData", "Users", routeValues: new { Id = user.Id  }, htmlAttributes: new { @class = "btn btn-primary" })
                             @Html.ActionLink("Edit", "UserForm", "Users", routeValues: new { IsExisting = true, Id = user.Id }, htmlAttributes: new { @class = "btn btn-primary" })
                             @if (@user.Id != Model.CurrentUserId)
                             {
