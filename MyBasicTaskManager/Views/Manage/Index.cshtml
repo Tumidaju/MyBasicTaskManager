@@ -6,11 +6,11 @@
     <h1 class="h3 mb-3 font-weight-normal">Change your account settings</h1>
     @if (Model.HasPassword)
     {
-        @Html.ActionLink("Change your password", "ChangePassword", new { }, new { @class = "btn btn-lg btn-primary btn-block" })
+        @Html.ActionLink("Change your password", "ChangePassword", new { }, new { @class = "btn btn-lg btn-outline-secondary btn-block" })
     }
     else
     {
-        @Html.ActionLink("Create", "SetPassword", new { }, new { @class = "btn btn-lg btn-primary btn-block" })
+        @Html.ActionLink("Create", "SetPassword", new { }, new { @class = "btn btn-lg btn-outline-secondary btn-block" })
     }
     <p class="text-success">@ViewBag.StatusMessage</p>
 </form>

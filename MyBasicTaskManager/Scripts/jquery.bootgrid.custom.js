@@ -1240,7 +1240,7 @@
             infos: "infos", // must be a unique class name or constellation of class names within the header and footer,
             left: "text-left",
             pagination: "pagination", // must be a unique class name or constellation of class names within the header and footer
-            paginationButton: "page-link", // must be a unique class name or constellation of class names within the pagination
+            paginationButton: "page-link btn-outline-secondary", // must be a unique class name or constellation of class names within the pagination
 
             /**
              * CSS class to select the parent div which activates responsive mode.

@@ -29,11 +29,11 @@
                             <td> No </td>
                         }
                         <td>
-                            @Html.ActionLink("Clear Data", "ClearData", "Users", routeValues: new { Id = user.Id  }, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Edit", "UserForm", "Users", routeValues: new { IsExisting = true, Id = user.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Clear Data", "ClearData", "Users", routeValues: new { Id = user.Id  }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+                            @Html.ActionLink("Edit", "UserForm", "Users", routeValues: new { IsExisting = true, Id = user.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                             @if (@user.Id != Model.CurrentUserId)
                             {
-                                @Html.ActionLink("Delete", "DeleteUser", "Users", routeValues: new { Id = user.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete", "DeleteUser", "Users", routeValues: new { Id = user.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                             }
                         </td>
                     </tr>

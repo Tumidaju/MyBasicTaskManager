@@ -95,3 +95,18 @@ footer {
 {
     table-layout: auto;
 }
+a {
+    color: #6c757d;
+}
+.page-item.active .page-link, .page-item .page-link:hover {
+    z-index: 1;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+, .page-ite {
+    z-index: 1;
+    color: #6c757d !important;
+    background-color: #fff !important;
+    border-color: #6c757d !important;
+}

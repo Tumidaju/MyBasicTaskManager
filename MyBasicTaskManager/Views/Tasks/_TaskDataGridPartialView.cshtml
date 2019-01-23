@@ -28,24 +28,34 @@
                     }
                     <tr>
                         <td>@task.Id</td>
-                        <td><span class="badge badge-secondary" style="background-color:@task.Category.Color;font-size: 1em;">@task.Category.Name</span></td>
+                        <td><span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid @task.Category.Color;font-size: 1em;">@task.Category.Name</span></td>
                         <td>@task.Name</td>
-                        <td>@task.Description</td>
-                        <td><span class="badge badge-secondary" style="background-color:@task.Rank.Color;font-size: 1em;">@task.Rank.Name</span></td>
-                        <td><span class="badge badge-secondary" style="background-color:@task.Status.Color;font-size: 1em;">@task.Status.Name</span></td>
+                        <td>
+                            @if (@task.Description.Length > 50)
+                            {
+                                @task.Description.Substring(0, 50)
+                                <span>"..."</span>
+                            }
+                            else
+                            {
+                                @task.Description
+                            }
+                        </td>
+                        <td><span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid @task.Rank.Color;font-size: 1em;">@task.Rank.Name</span></td>
+                        <td><span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid @task.Status.Color;font-size: 1em;">@task.Status.Name</span></td>
                         <td>@task.CreationDate</td>
                         <td>@task.EditDate</td>
                         <td>@task.CompletionDate</td>
-                        <td><span class="badge badge-secondary" style="background-color:@color;font-size: 1em;">@task.DeadlineDate.ToString()</span></td>
+                        <td><span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid @color;font-size: 1em;">@task.DeadlineDate.ToString()</span></td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: @task.Progres%" aria-valuenow="@task.Progres" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: @task.Progres%;background-color:@task.Category.Color;" aria-valuenow="@task.Progres" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "TaskForm", "Tasks", routeValues: new { IsExisting = true, Id = task.Id }, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Delete", "DeleteTask", "Tasks", routeValues: new { Id = task.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                            <button type="button" class="btn btn-outline-secondary viewFullTask" onclick="ShowPreview(@task.Id)">View</button>
+                            @Html.ActionLink("Edit", "TaskForm", "Tasks", routeValues: new { IsExisting = true, Id = task.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+                            @Html.ActionLink("Delete", "DeleteTask", "Tasks", routeValues: new { Id = task.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                         </td>
                     </tr>
                 }

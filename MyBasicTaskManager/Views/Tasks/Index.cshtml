@@ -9,7 +9,7 @@
                 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Kanban board</a>
             </li>
             <li class="nav-item" style="position:absolute;right:0px">
-                @Html.ActionLink("+ New Task", "TaskForm", "Tasks", routeValues: new { IsExisting = false }, htmlAttributes: new { @class = "nav-link btn btn-primary" })
+                @Html.ActionLink("+ New Task", "TaskForm", "Tasks", routeValues: new { IsExisting = false }, htmlAttributes: new { @class = "nav-link btn btn-outline-secondary" })
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -17,8 +17,91 @@
                 @{Html.RenderPartial("_TaskDataGridPartialView",Model.AllTasks);}
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                @{Html.RenderPartial("_TaskKanbanPartialView");}
+                @{Html.RenderPartial("_TaskKanbanPartialView", Model.AllTasks);}
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTaskName"></h5>
+                <div id="ModalTaskStatus"  style="padding-left:10px;">
+
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="ModalTaskRank" style="width:100%;">
+
+                </div>
+                <div id="ModalTaskProgres" style="width:100%;padding-top:10px;padding-bottom:10px;">
+
+                </div>
+                <div id="ModalTaskDescription">
+
+                </div>
+                <div id="ModalTaskDatesCreated" style="">
+
+                </div>
+                <div id="ModalTaskDatesDeadline">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-outline-secondary" id="ModalEdit">Edit</a>
+                <a href="#" class="btn btn-outline-secondary" id="ModalDelete">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    Date.parseJSON = function (t) {
+        var n = /\/Date\((\-?\d+)\)\//i;
+        return t == "/Date(-62135568000000)/" ? null : n.test(t) ? new Date(parseInt(n.exec(t)[1], 10)) : t
+    };
+    var TasksList=@Html.Raw(Json.Encode(Model.AllTasks));
+    $(function () {
+        var tabId = localStorage.getItem('activeTab')
+        $(tabId).click();
+        $('a[data-toggle="pill"]').on('show.bs.tab', function (e) {
+            var activeId = '#' + e.target.id;
+            localStorage.setItem('activeTab', activeId);
+        })
+    })
+    function ShowPreview(TaskId) {
+        FillPopUp(TaskId)
+        $('#taskModal').modal('toggle')
+    }
+
+    function FillPopUp(TaskId)
+    {
+        var task;
+        TasksList.forEach(function (element, index, array) {
+            if (element.Id == TaskId)
+                task = element;
+        })
+        var CreationTime = new Date.parseJSON(task.CreationDate).toISOString().slice(0, 10);
+        var DeadlineTime = new Date.parseJSON(task.DeadlineDate);
+        console.log(typeof DeadlineTime)
+        if (DeadlineTime instanceof Date) {
+            DeadlineTime = DeadlineTime.toISOString().slice(0, 10)
+            $('#ModalTaskDatesDeadline').html('<small class="text-muted">Deadline: ' + DeadlineTime + '</small>')
+        }
+        else {
+            $('#ModalTaskDatesDeadline').html('')
+        }
+        $('#ModalTaskName').html(task.Name);
+        $('#ModalTaskDescription').html(task.Description);
+        $('#ModalTaskProgres').html('<div class="progress"><div class="progress-bar progress-bar-striped" role="progressbar" style="width: ' + task.Progres + '%;background-color:' + task.Category.Color + ';" aria-valuenow="' + task.Progres + '" aria-valuemin="0" aria-valuemax="100">' + task.Progres +'%</div></div>');
+        $('#ModalEdit').prop('href', '/Tasks/TaskForm/' + TaskId+'?IsExisting=True' );
+        $('#ModalDelete').prop('href', '/Tasks/DeleteTask/' + TaskId);
+        $('#ModalTaskRank').html('<span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid ' + task.Rank.Color + ';font-size: 1em;">' + task.Rank.Name + '</span>')
+        $('#ModalTaskStatus').html('<span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid ' + task.Status.Color + ';font-size: 1em;">' + task.Status.Name + '</span>')
+        $('#ModalTaskDatesCreated').html('<small class="text-muted">Created: ' + CreationTime + '</small>')
+
+    }
+</script>
