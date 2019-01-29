@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyBasicTaskManager.Models;
+using MyBasicTaskManager.Models.Infrastructure;
 using MyBasicTaskManager.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,10 @@ namespace MyBasicTaskManager.Controllers
     [Authorize(Roles ="admin")]
     public class UsersController : Controller
     {
-        private readonly UsersRepository _usersRepository = new UsersRepository();
-        private readonly TasksRepository _tasksRepository = new TasksRepository();
-        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository();
+        static DatabaseModel _db = new DatabaseModel();
+        private readonly UsersRepository _usersRepository = new UsersRepository(_db);
+        private readonly TasksRepository _tasksRepository = new TasksRepository(_db);
+        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository(_db);
         public ActionResult Index()
         {
             ViewBag.Title = "Manage Users";

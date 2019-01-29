@@ -14,16 +14,15 @@ namespace MyBasicTaskManager.Tests.Controllers
     public class HomeControllerTest
     {
         [Test]
-        public void Index()
+        public void Index_Invoked_ReturnsViewNamedIndex()
         {
-            // Arrange
             HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.ViewName);
         }
     }
 }

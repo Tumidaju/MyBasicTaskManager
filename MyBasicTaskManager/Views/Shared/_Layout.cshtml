@@ -18,7 +18,7 @@
                 <a href="/" class="py-2 d-none d-md-inline-block" style="padding: 4px !important;" title="My Basic Task Manager" data-toggle="tooltip"><i class="fa fa-diamond" style="font-size:30px"></i></a>
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
+                    @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block tasks" })
                     @Html.ActionLink("Statistics", "Index", "Statistics", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
                 }
                 else

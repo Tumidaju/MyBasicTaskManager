@@ -7,9 +7,15 @@ using System.Web;
 
 namespace MyBasicTaskManager.Repositories
 {
-    public class StatisticsRepository
+    public class StatisticsRepository : IStatisticsRepository
     {
-        private readonly DatabaseModel _db = new DatabaseModel();
+        private DatabaseModel _db;
+
+        public StatisticsRepository(DatabaseModel db)
+        {
+            _db = db;
+        }
+
         public StatisticsFull Get(string UserId)
         {
             var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).Select(x => new StatisticsFull()
@@ -28,7 +34,7 @@ namespace MyBasicTaskManager.Repositories
         {
             var model = new STATISTICS()
             {
-                USER_ID= UserId,
+                USER_ID = UserId,
                 CREATED_TASKS = 0,
                 FINISHED_TASKS = 0,
                 DELETED_TASKS = 0,
@@ -37,107 +43,89 @@ namespace MyBasicTaskManager.Repositories
                 FIRST_TASK_CREATION = DateTime.Now,
                 LAST_TAKS_CREATION = DateTime.Now
             };
-            using (_db)
-            {
-                _db.STATISTICS.Add(model);
-                _db.SaveChanges();
-            }
+            _db.STATISTICS.Add(model);
+            _db.SaveChanges();
         }
         public void SetCreatedTasks(string UserId)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if(model==null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.CREATED_TASKS = model.CREATED_TASKS + 1;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.CREATED_TASKS = model.CREATED_TASKS + 1;
+            _db.SaveChanges();
         }
-        public void SetFinishedTasks(string UserId,int value)
+        public void SetFinishedTasks(string UserId, int value)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model == null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.FINISHED_TASKS = model.FINISHED_TASKS + value;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.FINISHED_TASKS = model.FINISHED_TASKS + value;
+            _db.SaveChanges();
         }
         public void SetTasksWithDeadline(string UserId, int value)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model == null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.TASKS_WITH_DEADLINE = model.TASKS_WITH_DEADLINE + value;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.TASKS_WITH_DEADLINE = model.TASKS_WITH_DEADLINE + value;
+            _db.SaveChanges();
+
         }
         public void SetTasksFinishedBeforeDeadline(string UserId, int value)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model == null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.TASKS_FINISHED_BEFORE_DEADLINE = model.TASKS_FINISHED_BEFORE_DEADLINE + value;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.TASKS_FINISHED_BEFORE_DEADLINE = model.TASKS_FINISHED_BEFORE_DEADLINE + value;
+            _db.SaveChanges();
+
         }
         public void SetLastTaskCreation(string UserId)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model == null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.LAST_TAKS_CREATION = DateTime.Now;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.LAST_TAKS_CREATION = DateTime.Now;
+            _db.SaveChanges();
+
         }
         public void SetDeletedTasks(string UserId)
         {
-            using (_db)
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model == null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model == null)
-                {
-                    CreateUserRecord(UserId);
-                    model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                }
-                model.DELETED_TASKS = model.DELETED_TASKS+1;
-                _db.SaveChanges();
+                CreateUserRecord(UserId);
+                model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
             }
+            model.DELETED_TASKS = model.DELETED_TASKS + 1;
+            _db.SaveChanges();
+
         }
         public void ClearData(string UserId)
         {
-            using (_db)
+
+            var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
+            if (model != null)
             {
-                var model = _db.STATISTICS.Where(x => x.USER_ID == UserId).FirstOrDefault();
-                if (model != null)
-                {
-                    _db.STATISTICS.Remove(model);
-                }
-                _db.SaveChanges();
+                _db.STATISTICS.Remove(model);
             }
+            _db.SaveChanges();
         }
+
     }
 }

@@ -7,15 +7,31 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using AutoMapper;
+using MyBasicTaskManager.Models.Infrastructure;
 
 namespace MyBasicTaskManager.Controllers
 {
     [Authorize]
     public class TasksController : Controller
     {
-        private readonly TasksRepository _tasksRepository = new TasksRepository();
-        private readonly StaticDataRepository _staticDataRepository = new StaticDataRepository();
-        private readonly UsersRepository _usersRepository = new UsersRepository();
+        private ITasksRepository _tasksRepository;
+        private IStaticDataRepository _staticDataRepository;
+        private IUsersRepository _usersRepository;
+        //static DatabaseModel _db = new DatabaseModel();
+        //public TasksController()
+        //{
+        //    _tasksRepository = new TasksRepository(_db);
+        //    _staticDataRepository = new StaticDataRepository(_db);
+        //    _usersRepository = new UsersRepository(_db);
+        //}
+
+        public TasksController(ITasksRepository tasksRepository, IStaticDataRepository staticDataRepository, IUsersRepository usersRepository)
+        {
+            _tasksRepository = tasksRepository;
+            _staticDataRepository = staticDataRepository;
+            _usersRepository = usersRepository;
+        }
+
         public ActionResult Index()
         {
             ViewBag.Title = "My Tasks";

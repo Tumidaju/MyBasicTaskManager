@@ -19,16 +19,17 @@
     </div>
     <button class="btn btn-lg btn-outline-secondary btn-block" type="submit">Sign in</button>
     <p>
-        @Html.ActionLink("Register as a new user", "Register")
+        @Html.ActionLink("Register as a new user", "Register", new { }, new { id = "registerLink" })
     </p>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 <style>
-    .title-row{
-        display:none;
+    .title-row {
+        display: none;
     }
+
     .body-content {
         display: -ms-flexbox;
         display: flex;

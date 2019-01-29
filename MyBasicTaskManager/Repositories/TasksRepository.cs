@@ -8,13 +8,20 @@ using Microsoft.AspNet.Identity;
 
 namespace MyBasicTaskManager.Repositories
 {
-    public class TasksRepository
+    public class TasksRepository : ITasksRepository
     {
-        private readonly DatabaseModel _db = new DatabaseModel();
-        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository();
+        private readonly DatabaseModel _db;
+        private readonly IStatisticsRepository _statisticsRepository;
+
+        public TasksRepository(DatabaseModel db)
+        {
+            _db = db;
+            _statisticsRepository = new StatisticsRepository(db);
+        }
+
         public List<TaskFull> GetAll(string UserId)
         {
-            var model = _db.TASK.Where(x=>x.USER_ID== UserId).Select(x => new TaskFull()
+            var model = _db.TASK.Where(x => x.USER_ID == UserId).Select(x => new TaskFull()
             {
                 Id = x.ID,
                 Name = x.NAME,
@@ -28,9 +35,9 @@ namespace MyBasicTaskManager.Repositories
                 Progres = x.PROGRES,
                 Category = new Category()
                 {
-                    Id=x.CATEGORY.ID,
-                    Name=x.CATEGORY.NAME,
-                    Color=x.CATEGORY.COLOR
+                    Id = x.CATEGORY.ID,
+                    Name = x.CATEGORY.NAME,
+                    Color = x.CATEGORY.COLOR
                 },
                 Rank = new Rank()
                 {
@@ -49,7 +56,7 @@ namespace MyBasicTaskManager.Repositories
         }
         public TaskFull Get(int Id, string UserId)
         {
-            var model = _db.TASK.Where(x => x.USER_ID == UserId && x.ID==Id).Select(x => new TaskFull()
+            var model = _db.TASK.Where(x => x.USER_ID == UserId && x.ID == Id).Select(x => new TaskFull()
             {
                 Id = x.ID,
                 Name = x.NAME,
@@ -84,98 +91,93 @@ namespace MyBasicTaskManager.Repositories
         }
         public void Save(bool IsExisting, TaskFullViewModel Task, string UserId)
         {
-            using (_db)
+            if (IsExisting)
             {
-                if(IsExisting)
-                {
-                    var dataModel = _db.TASK.Where(x => x.ID == Task.Id && x.USER_ID== UserId).First();
-                    var previousStatus = dataModel.STATUS_ID;
-                    var previousDeadline = dataModel.DEADLINE_DATE;
+                var dataModel = _db.TASK.Where(x => x.ID == Task.Id && x.USER_ID == UserId).First();
+                var previousStatus = dataModel.STATUS_ID;
+                var previousDeadline = dataModel.DEADLINE_DATE;
 
-                    dataModel.ID = Task.Id;
-                    dataModel.NAME = Task.Name;
-                    dataModel.DESCRIPTION = Task.Description;
-                    dataModel.CARD_COLOR = Task.CardColor;
-                    dataModel.FONT_COLOR = Task.FontColor;
-                    dataModel.DEADLINE_DATE = Task.DeadlineDate;
-                    dataModel.LAST_EDIT_DATE = DateTime.Now;
-                    if (Task.Status == 4)
-                        dataModel.COMPLETION_DATE = DateTime.Now;
-                    else
-                        dataModel.COMPLETION_DATE = null;
-                    dataModel.PROGRES = Task.Progres;
-                    dataModel.CATEGORY_ID = Task.Category;
-                    dataModel.RANK_ID = Task.Rank;
-                    dataModel.STATUS_ID = Task.Status;
-                    if (_db.SaveChanges() > 0)
-                    {
-                        if (previousStatus != 4 && Task.Status == 4)
-                            _statisticsRepository.SetFinishedTasks(UserId, 1);
-                        if (previousStatus == 4 && Task.Status != 4)
-                            _statisticsRepository.SetFinishedTasks(UserId, -1); 
-                        if (previousDeadline == null && Task.DeadlineDate != null)
-                            _statisticsRepository.SetTasksWithDeadline(UserId, 1);
-                        if (previousDeadline != null && Task.DeadlineDate == null)
-                            _statisticsRepository.SetTasksWithDeadline(UserId, -1);
-                        if (Task.DeadlineDate != null && Task.DeadlineDate>DateTime.Now && Task.Status == 4)
-                            _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, 1);
-                        if (Task.DeadlineDate != null && Task.DeadlineDate > DateTime.Now && previousStatus == 4 && Task.Status != 4 )
-                            _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, -1);
-                    }
-                }
+                dataModel.ID = Task.Id;
+                dataModel.NAME = Task.Name;
+                dataModel.DESCRIPTION = Task.Description;
+                dataModel.CARD_COLOR = Task.CardColor;
+                dataModel.FONT_COLOR = Task.FontColor;
+                dataModel.DEADLINE_DATE = Task.DeadlineDate;
+                dataModel.LAST_EDIT_DATE = DateTime.Now;
+                if (Task.Status == 4)
+                    dataModel.COMPLETION_DATE = DateTime.Now;
                 else
+                    dataModel.COMPLETION_DATE = null;
+                dataModel.PROGRES = Task.Progres;
+                dataModel.CATEGORY_ID = Task.Category;
+                dataModel.RANK_ID = Task.Rank;
+                dataModel.STATUS_ID = Task.Status;
+                if (_db.SaveChanges() > 0)
                 {
-                    var dataModel = new TASK()
-                    {
-                        NAME = Task.Name,
-                        DESCRIPTION = Task.Description,
-                        CARD_COLOR = Task.CardColor,
-                        FONT_COLOR = Task.FontColor,
-                        CREATION_DATE = DateTime.Now,
-                        DEADLINE_DATE = Task.DeadlineDate,
-                        PROGRES = Task.Progres,
-                        CATEGORY_ID = Task.Category,
-                        RANK_ID = Task.Rank,
-                        STATUS_ID = Task.Status,
-                        USER_ID=UserId
-                    };
-                    if (Task.Status == 4)
-                        dataModel.COMPLETION_DATE = DateTime.Now;
-                    _db.TASK.Add(dataModel);
-                    if (_db.SaveChanges() > 0)
-                    {
-                        _statisticsRepository.SetCreatedTasks(UserId);
-                        _statisticsRepository.SetLastTaskCreation(UserId);
-                        if (Task.DeadlineDate != null)
-                            _statisticsRepository.SetTasksWithDeadline(UserId, 1);
-                    }
+                    if (previousStatus != 4 && Task.Status == 4)
+                        _statisticsRepository.SetFinishedTasks(UserId, 1);
+                    if (previousStatus == 4 && Task.Status != 4)
+                        _statisticsRepository.SetFinishedTasks(UserId, -1);
+                    if (previousDeadline == null && Task.DeadlineDate != null)
+                        _statisticsRepository.SetTasksWithDeadline(UserId, 1);
+                    if (previousDeadline != null && Task.DeadlineDate == null)
+                        _statisticsRepository.SetTasksWithDeadline(UserId, -1);
+                    if (Task.DeadlineDate != null && Task.DeadlineDate > DateTime.Now && Task.Status == 4)
+                        _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, 1);
+                    if (Task.DeadlineDate != null && Task.DeadlineDate > DateTime.Now && previousStatus == 4 && Task.Status != 4)
+                        _statisticsRepository.SetTasksFinishedBeforeDeadline(UserId, -1);
                 }
             }
-            
+            else
+            {
+                var dataModel = new TASK()
+                {
+                    NAME = Task.Name,
+                    DESCRIPTION = Task.Description,
+                    CARD_COLOR = Task.CardColor,
+                    FONT_COLOR = Task.FontColor,
+                    CREATION_DATE = DateTime.Now,
+                    DEADLINE_DATE = Task.DeadlineDate,
+                    PROGRES = Task.Progres,
+                    CATEGORY_ID = Task.Category,
+                    RANK_ID = Task.Rank,
+                    STATUS_ID = Task.Status,
+                    USER_ID = UserId
+                };
+                if (Task.Status == 4)
+                    dataModel.COMPLETION_DATE = DateTime.Now;
+                _db.TASK.Add(dataModel);
+                if (_db.SaveChanges() > 0)
+                {
+                    _statisticsRepository.SetCreatedTasks(UserId);
+                    _statisticsRepository.SetLastTaskCreation(UserId);
+                    if (Task.DeadlineDate != null)
+                        _statisticsRepository.SetTasksWithDeadline(UserId, 1);
+                }
+            }
+
+
         }
         public void Delete(int Id, string UserId)
         {
-            using (_db)
+            var dataModel = _db.TASK.Where(x => x.ID == Id && x.USER_ID == UserId).First();
+            _db.TASK.Remove(dataModel);
+            if (_db.SaveChanges() > 0)
             {
-                var dataModel = _db.TASK.Where(x => x.ID == Id && x.USER_ID == UserId).First();
-                _db.TASK.Remove(dataModel);
-                if (_db.SaveChanges() > 0)
-                {
-                    _statisticsRepository.SetDeletedTasks(UserId);
-                }
+                _statisticsRepository.SetDeletedTasks(UserId);
             }
+
         }
         public void ClearData(string UserId)
         {
-            using (_db)
+
+            var model = _db.TASK.Where(x => x.USER_ID == UserId).ToList();
+            if (model != null)
             {
-                var model = _db.TASK.Where(x => x.USER_ID == UserId).ToList();
-                if (model != null)
-                {
-                    _db.TASK.RemoveRange(model);
-                }
-                _db.SaveChanges();
+                _db.TASK.RemoveRange(model);
             }
+            _db.SaveChanges();
+
         }
     }
 }

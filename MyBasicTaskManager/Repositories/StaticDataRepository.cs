@@ -8,9 +8,15 @@ using System.Web.Mvc;
 
 namespace MyBasicTaskManager.Repositories
 {
-    public class StaticDataRepository
+    public class StaticDataRepository : IStaticDataRepository
     {
-        private readonly DatabaseModel _db = new DatabaseModel();
+        private readonly DatabaseModel _db;
+
+        public StaticDataRepository(DatabaseModel db)
+        {
+            _db = db;
+        }
+
         public List<Rank> GetRanks()
         {
             var model = _db.RANK.Select(x => new Rank()

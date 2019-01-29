@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyBasicTaskManager.Models;
+using MyBasicTaskManager.Models.Infrastructure;
 using MyBasicTaskManager.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace MyBasicTaskManager.Controllers
     [Authorize]
     public class StatisticsController : Controller
     {
-        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository();
-        private readonly UsersRepository _usersRepository = new UsersRepository();
+        static DatabaseModel _db = new DatabaseModel();
+        private readonly StatisticsRepository _statisticsRepository = new StatisticsRepository(_db);
+        private readonly UsersRepository _usersRepository = new UsersRepository(_db);
         public ActionResult Index()
         {
             ViewBag.Title = "My Statistics";

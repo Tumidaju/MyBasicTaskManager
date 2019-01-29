@@ -170,3 +170,9 @@ C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\D
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\WebDriver.dll
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\WebDriver.xml
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml

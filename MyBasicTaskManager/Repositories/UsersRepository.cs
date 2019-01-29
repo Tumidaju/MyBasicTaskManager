@@ -7,10 +7,17 @@ using System.Web;
 
 namespace MyBasicTaskManager.Repositories
 {
-    public class UsersRepository
+    public class UsersRepository : IUsersRepository
     {
-        private readonly DatabaseModel _db = new DatabaseModel();
-        private readonly TasksRepository _tasksRepository = new TasksRepository();
+        private readonly DatabaseModel _db;
+        private ITasksRepository _tasksRepository;
+
+        public UsersRepository(DatabaseModel db)
+        {
+            _db = db;
+            _tasksRepository = new TasksRepository(db);
+        }
+
         public List<UserFull> GetAll()
         {
             var model = _db.AspNetUsers.Select(x => new UserFull()
@@ -25,8 +32,14 @@ namespace MyBasicTaskManager.Repositories
         }
         public string GetCurrentUserId()
         {
-            var model = _db.AspNetUsers.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
-            return model;
+            var name = "";
+            if (HttpContext.Current!=null)
+                name = HttpContext.Current.User.Identity.Name;
+            var model = _db.AspNetUsers.Where(x => x.Email == name).FirstOrDefault();
+            if (model != null)
+                return model.Id;
+            else
+                return name;
         }
         public UserFull Get(string UserId)
         {

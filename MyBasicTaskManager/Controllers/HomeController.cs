@@ -11,7 +11,7 @@ namespace MyBasicTaskManager.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "My Basic Task Manager";
-            return View();
+            return View("Index");
         }
     }
 }

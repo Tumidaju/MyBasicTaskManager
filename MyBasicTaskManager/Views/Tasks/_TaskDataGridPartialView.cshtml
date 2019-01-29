@@ -29,7 +29,7 @@
                     <tr>
                         <td>@task.Id</td>
                         <td><span class="badge badge-secondary" style="color:#6c757d;background-color:transparent;border:2px solid @task.Category.Color;font-size: 1em;">@task.Category.Name</span></td>
-                        <td>@task.Name</td>
+                        <td><span class="@task.Name">@task.Name</span></td>
                         <td>
                             @if (@task.Description.Length > 50)
                             {
