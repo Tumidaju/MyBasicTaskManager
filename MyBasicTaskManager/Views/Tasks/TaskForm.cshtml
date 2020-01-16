@@ -39,13 +39,13 @@
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.CardColor, new { @class = "", @for = "CardColor" })
-                @Html.TextBoxFor(model => model.Task.CardColor, new { @class = "form-control", @placeholder = "", @id = "CardColor" })
+                @Html.TextBoxFor(model => model.Task.CardColor, new { @class = "form-control", @placeholder = "", @id = "CardColor", type = "color" })
                 @Html.ValidationMessageFor(model => model.Task.CardColor)
             </div>
         </div>
         <div class="col-4">
             @Html.LabelFor(model => model.Task.Progres, new { @class = "", @for = "Progress" })
-            @Html.TextBoxFor(model => model.Task.Progres, new { @class = "form-control", @placeholder = "", @id = "Progress" })
+            @Html.TextBoxFor(model => model.Task.Progres, new { @class = "form-control", @placeholder = "", @id = "Progress", type = "numeric", @min = "0", @max = "100" })
             @Html.ValidationMessageFor(model => model.Task.Progres)
         </div>
     </div>
@@ -60,14 +60,14 @@
         <div class="col-4">
             <div class="form-gorup">
                 @Html.LabelFor(model => model.Task.FontColor, new { @class = "", @for = "FontColor" })
-                @Html.TextBoxFor(model => model.Task.FontColor, new { @class = "form-control", @placeholder = "", @id = "FontColor" })
+                @Html.TextBoxFor(model => model.Task.FontColor, new { @class = "form-control", @placeholder = "", @id = "FontColor", type = "color" })
                 @Html.ValidationMessageFor(model => model.Task.FontColor)
             </div>
 
         </div>
         <div class="col-4">
             @Html.LabelFor(model => model.Task.DeadlineDate, new { @class = "", @for = "DeadlineDate" })
-            @Html.TextBoxFor(model => model.Task.DeadlineDate, new { @class = "form-control", @placeholder = "", @id = "DeadlineDate" })
+            @Html.TextBoxFor(model => model.Task.DeadlineDate, new { @class = "form-control", @placeholder = "", @id = "DeadlineDate", type = "date" })
             @Html.ValidationMessageFor(model => model.Task.DeadlineDate)
         </div>
     </div>
@@ -80,10 +80,18 @@
 }
 <script>
     $(function () {
-        if (@Model.IsExisting) {
+        if (@Model.IsExisting.ToString().ToLower()) {
             $("#Status").val(@Model.Task.Status).change();
             $("#Rank").val(@Model.Task.Rank).change();
             $("#Category").val(@Model.Task.Category).change();
+            @{ 
+                var date = "";
+                if (@Model.Task.DeadlineDate.HasValue)
+                {
+                    date = @Model.Task.DeadlineDate.Value.ToString("yyyy-MM-dd");
+                }                
+            }
+            $("#DeadlineDate").val("@date");
         }
     });
 </script>
