@@ -348,3 +348,4 @@ C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microso
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microsoft.Extensions.DependencyInjection.xml
 C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\Tumidaju\Source\Repos\MyBasicTaskManager\MyBasicTaskManager\obj\Debug\MyBasicTaskManager.csprojAssemblyReference.cache

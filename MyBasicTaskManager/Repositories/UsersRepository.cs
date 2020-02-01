@@ -1,4 +1,5 @@
-﻿using MyBasicTaskManager.Models;
+﻿using MyBasicTaskManager.Interfaces;
+using MyBasicTaskManager.Models;
 using MyBasicTaskManager.Models.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,9 @@ namespace MyBasicTaskManager.Repositories
     public class UsersRepository : IUsersRepository
     {
         private readonly DatabaseModel _db;
-        private ITasksRepository _tasksRepository;
-
         public UsersRepository(DatabaseModel db)
         {
             _db = db;
-            _tasksRepository = new TasksRepository(db);
         }
 
         public List<UserFull> GetAll()

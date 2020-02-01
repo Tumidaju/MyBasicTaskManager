@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyBasicTaskManager.Models.Infrastructure;
+using MyBasicTaskManager.Interfaces;
 
 [assembly: OwinStartupAttribute(typeof(MyBasicTaskManager.Startup))]
 namespace MyBasicTaskManager
@@ -19,6 +20,7 @@ namespace MyBasicTaskManager
             services.AddScoped<ITasksRepository, TasksRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IStatisticsRepository, StatisticsRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<DatabaseModel, DatabaseModel>();
 
 

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using AutoMapper;
 using MyBasicTaskManager.Models.Infrastructure;
+using MyBasicTaskManager.Interfaces;
 
 namespace MyBasicTaskManager.Controllers
 {
@@ -54,7 +55,7 @@ namespace MyBasicTaskManager.Controllers
             var Viewmodel = new TaskFormViewModel()
             {
                 RankList = _staticDataRepository.GetRanksDropdown(),
-                CategoryList = _staticDataRepository.GetCategoriesDropdown(),
+                CategoryList = _staticDataRepository.GetCategoriesDropdown(_usersRepository.GetCurrentUserId()),
                 StatusList = _staticDataRepository.GetStatusesDropdown(),
                 Task=new TaskFullViewModel() { Id=0, Progres = 0 }
             };
@@ -83,7 +84,7 @@ namespace MyBasicTaskManager.Controllers
             else
             {
                 taskFormViewModel.RankList = _staticDataRepository.GetRanksDropdown();
-                taskFormViewModel.CategoryList = _staticDataRepository.GetCategoriesDropdown();
+                taskFormViewModel.CategoryList = _staticDataRepository.GetCategoriesDropdown(_usersRepository.GetCurrentUserId());
                 taskFormViewModel.StatusList = _staticDataRepository.GetStatusesDropdown();
                 return View(taskFormViewModel);
             }

@@ -19,6 +19,7 @@
                 @if (Request.IsAuthenticated)
                 {
                     @Html.ActionLink("Tasks", "Index", "Tasks", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block tasks" })
+                    @Html.ActionLink("Categories", "Index", "Category", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block categories" })
                     @Html.ActionLink("Statistics", "Index", "Statistics", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
                 }
                 else
@@ -33,8 +34,8 @@
                 {
                     @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "py-2 d-none d-md-inline-block" })
                 }
-                    @Html.Partial("_LoginPartial")
-                </div>
+                @Html.Partial("_LoginPartial")
+            </div>
         </nav>
     </header>
     <main>

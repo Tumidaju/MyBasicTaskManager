@@ -1,0 +1,21 @@
+﻿@model MyBasicTaskManager.Models.CategoryList
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist" style="margin-bottom:0 !important">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">List of categories</a>
+            </li>
+            <li class="nav-item" style="position:absolute;right:0px">
+                @Html.ActionLink("+ New Category", "CategoryForm", "Category", routeValues: new { IsExisting = false }, htmlAttributes: new { @class = "nav-link btn btn-outline-secondary addcategory" })
+            </li>
+        </ul>
+        @{Html.RenderPartial("_CategoryDataGridPartialView", Model.AllCategories);}
+    </div>
+</div>
+<script>
+    Date.parseJSON = function (t) {
+        var n = /\/Date\((\-?\d+)\)\//i;
+        return t == "/Date(-62135568000000)/" ? null : n.test(t) ? new Date(parseInt(n.exec(t)[1], 10)) : t
+    };
+    var CategoryList=@Html.Raw(Json.Encode(Model.AllCategories));
+</script>

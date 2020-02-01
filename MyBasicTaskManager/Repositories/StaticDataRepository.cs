@@ -1,4 +1,5 @@
-﻿using MyBasicTaskManager.Models;
+﻿using MyBasicTaskManager.Interfaces;
+using MyBasicTaskManager.Models;
 using MyBasicTaskManager.Models.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,9 @@ namespace MyBasicTaskManager.Repositories
             }).ToList();
             return model;
         }
-        public List<Category> GetCategories()
+        public List<Category> GetCategories(string UserId)
         {
-            var model = _db.CATEGORY.Select(x => new Category()
+            var model = _db.CATEGORY.Where(x=>x.USER_ID==UserId).Select(x => new Category()
             {
                 Id = x.ID,
                 Name = x.NAME,
@@ -66,9 +67,9 @@ namespace MyBasicTaskManager.Repositories
             }).ToList();
             return model;
         }
-        public IEnumerable<SelectListItem> GetCategoriesDropdown()
+        public IEnumerable<SelectListItem> GetCategoriesDropdown(string UserId)
         {
-            var model = _db.CATEGORY.Select(x => new SelectListItem()
+            var model = _db.CATEGORY.Where(x => x.USER_ID == UserId).Select(x => new SelectListItem()
             {
                 Value = x.ID.ToString(),
                 Text = x.NAME,

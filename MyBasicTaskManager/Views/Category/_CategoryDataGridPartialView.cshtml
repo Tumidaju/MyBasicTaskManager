@@ -1,0 +1,55 @@
+﻿@model List<MyBasicTaskManager.Models.CategoryViewModel>
+<div class="row">
+    <div class="col-12">
+        <table id="grid-data" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="Id" data-type="numeric">ID</th>
+                    <th data-column-id="Name">Name</th>
+                    <th data-column-id="Description">Description</th>
+                    <th data-column-id="Color" data-sortable="false">Color</th>
+                    <th data-column-id="link" data-sortable="false">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td><span class="@category.Name">@category.Name</span></td>
+                        <td>
+                            @if (category.Description.Length > 50)
+                            {
+                                @category.Description.Substring(0, 50)
+                                <span>"..."</span>
+                            }
+                            else
+                            {
+                                @category.Description
+                            }
+                        </td>              
+                        <td>@category.Color</td>
+                        <td>
+                            @Html.ActionLink("Edit", "CategoryForm", "Category", routeValues: new { IsExisting = true, Id = category.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+                            @if (!category.IsUsedInTask)
+                            {
+                                @Html.ActionLink("Delete", "DeleteCategory", "Category", routeValues: new { Id = category.Id }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#grid-data").bootgrid({
+            formatters: {
+                "link": function (column, row) {
+                    return "<a href=\"#\">" + column.id + ": " + row.id + "</a>";
+                }
+            }
+        });
+    });
+</script>

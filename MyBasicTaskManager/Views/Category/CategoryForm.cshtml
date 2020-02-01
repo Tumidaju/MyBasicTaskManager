@@ -1,0 +1,37 @@
+﻿@model MyBasicTaskManager.Models.CategoryFormViewModel
+@using (Html.BeginForm("CategoryForm", "Category", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true);
+    @Html.HiddenFor(model => model.Category.Id)
+    @Html.HiddenFor(model => model.IsExisting)
+    <div class="row mt-4 mb-4">
+        <div class="col-4">
+            <div class="form-gorup">
+                @Html.LabelFor(model => model.Category.Name, new { @class = "", @for = "Name" })
+                @Html.TextBoxFor(model => model.Category.Name, new { @class = "form-control", @placeholder = "", @id = "Name" })
+                @Html.ValidationMessageFor(model => model.Category.Name)
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-gorup">
+                @Html.LabelFor(model => model.Category.Description, new { @class = "", @for = "Description" })
+                @Html.TextBoxFor(model => model.Category.Description, new { @class = "form-control", @placeholder = "", @id = "Description" })
+                @Html.ValidationMessageFor(model => model.Category.Description)
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-gorup">
+                @Html.LabelFor(model => model.Category.Color, new { @class = "", @for = "Color" })
+                @Html.TextBoxFor(model => model.Category.Color, new { @class = "form-control", @placeholder = "", @id = "Color", type = "color" })
+                @Html.ValidationMessageFor(model => model.Category.Color)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col align-self-end" style="text-align: right;">
+            @Html.ActionLink("Back", "Index", "Category", routeValues: new { }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+            <button type="submit" class="btn btn-outline-secondary add">Save</button>
+        </div>
+    </div>
+}
