@@ -22,7 +22,8 @@ namespace MyBasicTaskManager.Repositories
 
         public List<TaskFull> GetAll(string UserId)
         {
-            var model = _db.TASK.Where(x => x.USER_ID == UserId).Select(x => new TaskFull()
+            var tmp = _db.TASK.Where(x => x.USER_ID == UserId).ToList();
+            var model=tmp.Select(x => new TaskFull()
             {
                 Id = x.ID,
                 Name = x.NAME,
@@ -34,11 +35,16 @@ namespace MyBasicTaskManager.Repositories
                 CompletionDate = x.COMPLETION_DATE,
                 DeadlineDate = x.DEADLINE_DATE,
                 Progres = x.PROGRES,
-                Category = new Category()
+                Category = x.CATEGORY_ID != null ? new Category()
                 {
                     Id = x.CATEGORY.ID,
                     Name = x.CATEGORY.NAME,
                     Color = x.CATEGORY.COLOR
+                }: new Category()
+                {
+                    Id = 0,
+                    Name = "Uncategorized",
+                    Color = "#000"
                 },
                 Rank = new Rank()
                 {
@@ -57,7 +63,8 @@ namespace MyBasicTaskManager.Repositories
         }
         public TaskFull Get(int Id, string UserId)
         {
-            var model = _db.TASK.Where(x => x.USER_ID == UserId && x.ID == Id).Select(x => new TaskFull()
+            var tmp = _db.TASK.Where(x => x.USER_ID == UserId && x.ID == Id).ToList();
+            var model = tmp.Select(x => new TaskFull()
             {
                 Id = x.ID,
                 Name = x.NAME,
@@ -69,12 +76,12 @@ namespace MyBasicTaskManager.Repositories
                 EditDate = x.LAST_EDIT_DATE,
                 CompletionDate = x.COMPLETION_DATE,
                 Progres = x.PROGRES,
-                Category = new Category()
+                Category = x.CATEGORY_ID != null ? new Category()
                 {
-                    Id = x.CATEGORY_ID,
+                    Id = (int)x.CATEGORY_ID,
                     Name = x.CATEGORY.NAME,
                     Color = x.CATEGORY.COLOR
-                },
+                } : null,
                 Rank = new Rank()
                 {
                     Id = x.RANK_ID,

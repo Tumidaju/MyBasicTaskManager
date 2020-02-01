@@ -41,7 +41,7 @@ namespace MyBasicTaskManager.Models.Infrastructure
 
         public int PROGRES { get; set; }
 
-        public int CATEGORY_ID { get; set; }
+        public int? CATEGORY_ID { get; set; }
 
         public int RANK_ID { get; set; }
 

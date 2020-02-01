@@ -76,7 +76,7 @@ namespace MyBasicTaskManager.Controllers
         public ActionResult TaskForm(TaskFormViewModel taskFormViewModel)
         {
             TryValidateModel(taskFormViewModel.Task);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid || taskFormViewModel.Task.Category==null )
             {
                 _tasksRepository.Save(taskFormViewModel.IsExisting, taskFormViewModel.Task, _usersRepository.GetCurrentUserId());
                 return RedirectToAction("Index");

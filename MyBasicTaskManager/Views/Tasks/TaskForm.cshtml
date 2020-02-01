@@ -80,10 +80,14 @@
 }
 <script>
     $(function () {
+        $("#Category").append('<option value=\'Null\'>Uncategorized</option>');
         if (@Model.IsExisting.ToString().ToLower()) {
             $("#Status").val(@Model.Task.Status).change();
             $("#Rank").val(@Model.Task.Rank).change();
-            $("#Category").val(@Model.Task.Category).change();
+            if("@Model.Task.Category"!="")
+                $("#Category").val(@Model.Task.Category).change();
+            else
+                $("#Category").val('Null').change();
             @{ 
                 var date = "";
                 if (@Model.Task.DeadlineDate.HasValue)

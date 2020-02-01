@@ -27,7 +27,7 @@ namespace MyBasicTaskManager.Models
         [Required(ErrorMessage = "Progres is required")]
         public int Progres { get; set; }
         [Display(Name = "Category")]
-        public int Category { get; set; }
+        public int? Category { get; set; }
         [Display(Name = "Status")]
         public int Status { get; set; }
         [Display(Name = "Priority")]
